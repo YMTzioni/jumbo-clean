@@ -3,13 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>ג׳מבו קלין | ניקיון לפני אכלוס ופוליש רצפות</title>
-<meta name="description" content="ג׳מבו קלין – ניקיון דירות ומשרדים לפני אכלוס, פוליש קריסטל, פוליש לגרניט פורצלן וחידוש רצפות. לקוחות פרטיים ועסקיים. 052-858-0800">
+<title>ג׳מבו קלין | שיפוצים, ניקיון לפני אכלוס ופוליש</title>
+<meta name="description" content="ג׳מבו קלין – שיפוצים לדירות ולמשרדים: צבע, בנייה, טיח ואינסטלציה. ואחרי השיפוץ – ניקיון לפני אכלוס, פוליש וחידוש רצפות. 052-858-0800">
 <meta name="theme-color" content="#141a33">
-<meta property="og:title" content="ג׳מבו קלין | ניקיון לפני אכלוס ופוליש רצפות">
+<meta property="og:title" content="ג׳מבו קלין | שיפוצים, ניקיון לפני אכלוס ופוליש">
 <meta property="og:image" content="https://ymtzioni.github.io/jumbo-clean/assets/og.jpg">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Cpath d='M4 30 L20 12 L36 30' fill='none' stroke='%231b2552' stroke-width='6'/%3E%3Cpath d='M12 31 L20 22 L28 31' fill='none' stroke='%23c9962e' stroke-width='3.5'/%3E%3Cpath d='M33 2 Q33 9 40 9 Q33 9 33 16 Q33 9 26 9 Q33 9 33 2Z' fill='%23c9962e'/%3E%3C/svg%3E">
-<link rel="preload" as="image" href="assets/machine-800.webp" fetchpriority="high">
+<link rel="preload" as="image" href="assets/reno-800.webp" fetchpriority="high">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Karantina:wght@400;700&family=Miriam+Libre:wght@400;700&display=swap" rel="stylesheet">
@@ -22,6 +22,7 @@
  * nav: N5 floating pill · footer: Ft5 statement · CTA: filled pill + C4 sticky bar
  * enrichment: Tier-B hand-SVG from the logo (house-clipped photo, roof, arc, sparkle) + Tier-A CSS tiles
  * reveal: one load entrance (headline + arc draw), no scroll reveals
+ * v4.1: renovations lead (hero, first bento), cleaning + polish second
  * Hallmark · pre-emit critique: P4 H5 E4 S5 R4 V5
  */
 html,body{overflow-x:clip}
@@ -53,6 +54,7 @@ p{margin:0}
 .mark{display:flex;align-items:center;gap:var(--space-2xs);text-decoration:none;white-space:nowrap}
 .mark b{font:700 1.9rem/1 var(--font-display);letter-spacing:.01em}
 .mark b i{font-style:normal;color:var(--color-accent)}
+.mark .plus{font:700 1.35rem/1 var(--font-display);color:var(--color-accent);margin-inline-start:var(--space-3xs)}
 .roof{width:34px;height:auto;flex:none}
 .roof{--roof-1:var(--color-on-night);--roof-2:var(--color-accent)}
 .pill ul{display:flex;gap:var(--space-md);list-style:none;margin:0 auto 0 0;padding:0;font-size:var(--text-sm)}
@@ -103,6 +105,18 @@ p{margin:0}
 .t-f{grid-area:f;background:var(--color-accent);color:var(--color-night)}
 .t-f p{color:var(--color-night)}
 .t-g{grid-area:g}
+.bento:not(.reno){grid-template-areas:"a a b b" "a a c d" "e e g g"}
+.bento.reno{grid-template-areas:"a a b c" "a a d d" "a a e e"}
+.t-ra{grid-area:a;background:var(--color-night);color:var(--color-on-night)}
+.t-ra h3{font-size:var(--text-3xl)}
+.t-ra p,.t-ra .checks span{color:var(--color-on-night-2)}
+.t-ra .checks li{border-top-color:var(--color-night-3)}
+.t-ra .btn{align-self:flex-start;margin-top:var(--space-sm)}
+.t-rb{grid-area:b}.t-rc{grid-area:c}.t-rd{grid-area:d}
+.t-re{grid-area:e;background:var(--color-accent);color:var(--color-night)}
+.t-re p{color:var(--color-night)}
+.reno .disc{margin-bottom:var(--space-2xs)}
+.services.clean{padding-top:0}
 .tag{align-self:flex-start;font-size:var(--text-xs);font-weight:700;padding:var(--space-3xs) var(--space-xs);border-radius:var(--radius-pill);background:var(--color-accent);color:var(--color-night)}
 .t-a h3{font-size:var(--text-3xl)}
 .checks{list-style:none;margin:auto 0 0;padding:0;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:0 var(--space-lg)}
@@ -116,7 +130,7 @@ p{margin:0}
 .duo li{padding-block:var(--space-3xs)}
 .duo li::before{content:"";display:inline-block;width:.65em;height:.65em;margin-inline-end:var(--space-2xs);background:var(--color-accent-ink);clip-path:polygon(50% 0,61% 39%,100% 50%,61% 61%,50% 100%,39% 61%,0 50%,39% 39%)}
 .discs{display:flex;gap:var(--space-sm);margin-top:auto}
-.disc{width:58px;height:58px;border-radius:50%;background:var(--color-night);display:grid;place-items:center;box-shadow:0 0 0 2px var(--color-accent),0 0 0 4px var(--color-night)}
+.disc{flex:none;width:58px;height:58px;border-radius:50%;background:var(--color-night);display:grid;place-items:center;box-shadow:0 0 0 2px var(--color-accent),0 0 0 4px var(--color-night)}
 .disc svg{width:30px;height:30px;color:var(--color-accent)}
 
 /* Tier-A CSS art · a floor half polished */
@@ -186,7 +200,8 @@ footer{background:var(--color-night);color:var(--color-on-night-2);border-top:va
   .pill nav{justify-content:space-between}
   .hero-grid,.contact-grid,.faq{grid-template-columns:minmax(0,1fr)}
   .house{max-width:420px;width:100%;justify-self:center}
-  .bento{grid-template-columns:repeat(2,minmax(0,1fr));grid-template-areas:"a a" "b b" "c d" "e e" "f g"}
+  .bento,.bento:not(.reno){grid-template-columns:repeat(2,minmax(0,1fr));grid-template-areas:"a a" "b b" "c d" "e e" "g g"}
+  .bento.reno{grid-template-areas:"a a" "b c" "d d" "e e"}
   .head{flex-direction:column;align-items:start;gap:var(--space-sm)}
   .process ol{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:var(--space-xl)}
   .process li::after{display:none}
@@ -199,7 +214,9 @@ footer{background:var(--color-night);color:var(--color-on-night-2);border-top:va
   .hero-cta .btn{flex:1 1 100%}
   .motto{font-size:var(--text-lg)}
   .motto i{margin-inline:var(--space-2xs)}
-  .bento{grid-template-columns:minmax(0,1fr);grid-template-areas:"a" "b" "c" "d" "e" "f" "g"}
+  .bento,.bento:not(.reno),.bento.reno{grid-template-columns:minmax(0,1fr);grid-template-areas:"a" "b" "c" "d" "e" "g"}
+  .bento.reno{grid-template-areas:"a" "b" "c" "d" "e"}
+  .mark .plus{display:none}
   .t{padding:var(--space-md)}
   .checks{grid-template-columns:minmax(0,1fr)}
   .duo{grid-template-columns:minmax(0,1fr)}
@@ -232,11 +249,11 @@ footer{background:var(--color-night);color:var(--color-on-night-2);border-top:va
 
 <header class="pill">
   <nav aria-label="ראשי">
-    <a class="mark" href="./"><svg class="roof" viewBox="0 0 40 28" aria-hidden="true"><use href="#i-roof"/></svg><b>ג׳מבו <i>קלין</i></b></a>
+    <a class="mark" href="./"><svg class="roof" viewBox="0 0 40 28" aria-hidden="true"><use href="#i-roof"/></svg><b>ג׳מבו <i>קלין</i></b><span class="plus">+ שיפוצים</span></a>
     <ul>
-      <li><a href="#services">שירותים</a></li>
-      <li><a href="#process">איך זה עובד</a></li>
-      <li><a href="#faq">שאלות</a></li>
+      <li><a href="#reno">שיפוצים</a></li>
+      <li><a href="#clean">ניקיון ופוליש</a></li>
+            <li><a href="#faq">שאלות</a></li>
     </ul>
     <a class="btn btn-gold" href="tel:0528580800" aria-label="התקשרו 052-858-0800"><svg><use href="#i-phone"/></svg><span class="num">052-858-0800</span></a>
   </nav>
@@ -247,15 +264,15 @@ footer{background:var(--color-night);color:var(--color-on-night-2);border-top:va
     <div class="wrap">
       <div class="hero-grid">
         <div class="hero-text">
-          <h1>מוכן לכניסה.<br><span>מבריק</span> מהיום הראשון.</h1>
-          <p class="lede">ניקיון דירות ומשרדים לפני אכלוס, פוליש קריסטל, פוליש לגרניט פורצלן וחידוש רצפות. ללקוחות פרטיים ולעסקים.</p>
+          <h1><span>משפצים</span>, מנקים,<br>מוסרים נכס מוכן.</h1>
+          <p class="lede">שיפוצים לדירות ולמשרדים – צבע, בנייה וטיח, אינסטלציה. ובסוף העבודה, אותו צוות מנקה, מלטש את הרצפה ומוסר לכם נכס מוכן לכניסה.</p>
           <div class="hero-cta">
             <a class="btn btn-gold" href="tel:0528580800"><svg><use href="#i-phone"/></svg><span class="num">052-858-0800</span></a>
-            <a class="btn btn-ghost" href="https://wa.me/972528580800" target="_blank" rel="noopener"><svg><use href="#i-wa"/></svg>הצעת מחיר בוואטסאפ</a>
+            <a class="btn btn-ghost" href="https://wa.me/972528580800" target="_blank" rel="noopener"><svg><use href="#i-wa"/></svg>הצעת מחיר לשיפוץ</a>
           </div>
         </div>
         <figure class="house">
-          <svg viewBox="0 0 520 600" role="img" aria-label="מכונת פוליש מלטשת רצפת גרניט פורצלן">
+          <svg viewBox="0 0 520 600" role="img" aria-label="צביעת קיר בשיפוץ דירה">
             <defs>
               <clipPath id="house-clip"><path d="M100 198 L260 78 L420 198 V600 H100Z"/></clipPath>
               <filter id="grain"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2"/><feColorMatrix values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 .14 0"/></filter>
@@ -264,7 +281,7 @@ footer{background:var(--color-night);color:var(--color-on-night-2);border-top:va
             <path class="gold draw" pathLength="1" d="M99 139 A250 250 0 0 1 421 139" fill="none" stroke-width="9" stroke-linecap="round"/>
             <rect class="fill-light" x="138" y="96" width="28" height="70"/>
             <g clip-path="url(#house-clip)">
-              <image href="assets/machine-800.webp" x="100" y="60" width="320" height="540" preserveAspectRatio="xMidYMid slice"/>
+              <image href="assets/reno-800.webp" x="100" y="60" width="320" height="540" preserveAspectRatio="xMinYMid slice"/>
               <rect x="100" y="60" width="320" height="540" filter="url(#grain)"/>
             </g>
             <path class="light" d="M74 218 L260 58 L446 218" fill="none" stroke-width="24"/>
@@ -278,14 +295,55 @@ footer{background:var(--color-night);color:var(--color-on-night-2);border-top:va
     </div>
   </section>
 
-  <section class="wrap services" id="services">
+  <section class="wrap services" id="reno">
     <div class="head">
-      <h2>כל מה שהנכס צריך, מצוות אחד.</h2>
-      <p>מהאבק הראשון אחרי הקבלן ועד הברק של הרצפה. לדירות, לבתים, למשרדים ולמבני מסחר.</p>
+      <h2>שיפוצים לדירות ולמשרדים.</h2>
+      <p>מתכננים איתכם, מבצעים ומלווים את העבודה עד הסוף – ובסיום משאירים נכס נקי, לא אתר בנייה.</p>
+    </div>
+    <div class="bento reno">
+      <article class="t t-ra">
+        <span class="tag">השירות המרכזי</span>
+        <h3>שיפוץ דירה או משרד</h3>
+        <p>מקיר אחד ועד שיפוץ מלא. צוות אחד שמחזיק את כל העבודה, כך שאתם לא מתאמים בין בעלי מקצוע.</p>
+        <ul class="checks">
+          <li><b>בנייה וטיח</b><span>קירות, תיקונים והכנה לצבע</span></li>
+          <li><b>צבע</b><span>צביעת דירות, משרדים וחדרי מדרגות</span></li>
+          <li><b>אינסטלציה</b><span>תיקונים, החלפות והתקנות</span></li>
+          <li><b>ריצוף</b><span>החלפה ותיקון אריחים</span></li>
+          <li><b>ליווי</b><span>הצעת מחיר מסודרת ותיאום לוחות זמנים</span></li>
+          <li><b>בסיום</b><span>ניקיון לפני אכלוס ופוליש – כלול בשירות שלנו</span></li>
+        </ul>
+        <a class="btn btn-gold" href="#contact">לבדיקת השיפוץ <svg><use href="#i-arrow"/></svg></a>
+      </article>
+      <article class="t t-rb">
+        <span class="disc"><svg viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" d="M4 3.5h13v5H4z M17 6h3v6h-8v3 M11 15h2v6h-2z"/></svg></span>
+        <h3>צבע</h3>
+        <p>צביעת דירות ומשרדים, כולל שפכטל ותיקוני קירות לפני הצבע.</p>
+      </article>
+      <article class="t t-rc">
+        <span class="disc"><svg viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" d="M2.5 20.5h9v-3.5h-9zM11.5 20.5h9v-3.5h-9zM7 17v-3.5h9V17M14.5 3.5l5.5 5.5-4.5 1-2-2z M13.5 8l-3 3"/></svg></span>
+        <h3>בנייה וטיח</h3>
+        <p>קירות, תיקונים ועבודות טיח – בגדול ובקטן.</p>
+      </article>
+      <article class="t t-rd">
+        <span class="disc"><svg viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" d="M2.5 9.5h8a5.5 5.5 0 0 1 5.5 5.5v.5 M9 9.5V5.5 M6 5.5h6 M2.5 6.5v6"/><path fill="currentColor" d="M16 17.5c-1.2 1.6-1.6 2.4-1.6 3.1a1.6 1.6 0 0 0 3.2 0c0-.7-.4-1.5-1.6-3.1z"/></svg></span>
+        <h3>אינסטלציה</h3>
+        <p>נזילות, החלפת ברזים וצנרת, והתקנות במטבח ובחדרי הרחצה.</p>
+      </article>
+      <article class="t t-re">
+        <h3>שיפוץ ואז ניקיון – אותו צוות.</h3>
+        <p>אחרי שיפוץ נשארים אבק, כתמי צבע ושאריות טיח. אצלנו הניקיון לפני הכניסה הוא חלק מהעבודה, לא קבלן נוסף.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="wrap services clean" id="clean">
+    <div class="head">
+      <h2>ניקיון ופוליש.</h2>
+      <p>גם בלי שיפוץ: ניקיון לפני אכלוס, ניקיון כללי, ופוליש שמחזיר לרצפה את הברק.</p>
     </div>
     <div class="bento">
       <article class="t t-a">
-        <span class="tag">הכי מבוקש</span>
         <h3>ניקיון לפני אכלוס</h3>
         <p>דירה חדשה מקבלן או משרד אחרי שיפוץ – מנקים מהתקרה עד הרצפה, כך שאפשר להכניס רהיטים באותו יום.</p>
         <ul class="checks">
@@ -319,23 +377,15 @@ footer{background:var(--color-night);color:var(--color-on-night-2);border-top:va
         <div class="duo">
           <div>
             <h3>לבית</h3>
-            <ul><li>דירה חדשה לפני כניסה</li><li>אחרי שיפוץ או לפני מעבר</li><li>ניקיון כללי ויסודי</li></ul>
+            <ul><li>שיפוץ דירה וניקיון בסופו</li><li>דירה חדשה לפני כניסה</li><li>ניקיון כללי ויסודי</li></ul>
           </div>
           <div>
             <h3>לעסק</h3>
-            <ul><li>משרדים, חנויות ומבני מסחר</li><li>בשעות שלא מפריעות לפעילות</li><li>חשבונית והתקשרות קבועה</li></ul>
+            <ul><li>שיפוץ וניקיון משרדים וחנויות</li><li>בשעות שלא מפריעות לפעילות</li><li>חשבונית והתקשרות קבועה</li></ul>
           </div>
         </div>
       </article>
-      <article class="t t-f">
-        <h3>+ שיפוצים ואינסטלציה</h3>
-        <p>כתובת אחת לכל הנכס.</p>
-        <div class="discs" aria-hidden="true">
-          <span class="disc"><svg viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" d="M2.5 20.5h9v-3.5h-9zM11.5 20.5h9v-3.5h-9zM7 17v-3.5h9V17M14.5 3.5l5.5 5.5-4.5 1-2-2z M13.5 8l-3 3"/></svg></span>
-          <span class="disc"><svg viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" d="M2.5 9.5h8a5.5 5.5 0 0 1 5.5 5.5v.5 M9 9.5V5.5 M6 5.5h6 M2.5 6.5v6"/><path fill="currentColor" d="M16 17.5c-1.2 1.6-1.6 2.4-1.6 3.1a1.6 1.6 0 0 0 3.2 0c0-.7-.4-1.5-1.6-3.1z"/></svg></span>
-        </div>
-      </article>
-      <article class="t t-g">
+      <article class="t t-g wide">
         <h3>ניקיון כללי לבית</h3>
         <p>משטחים, חלונות, תריסים וארונות – מהתקרה ועד הרצפה.</p>
       </article>
@@ -344,22 +394,23 @@ footer{background:var(--color-night);color:var(--color-on-night-2);border-top:va
 
   <section class="wrap process" id="process">
     <div class="head">
-      <h2>ארבעה צעדים לנכס מוכן.</h2>
+      <h2>מהשיפוץ ועד הכניסה.</h2>
     </div>
     <ol>
       <li><b>פונים אלינו</b><span>בטלפון, בוואטסאפ או בטופס למטה</span></li>
-      <li><b>מקבלים הצעת מחיר</b><span>לפי גודל הנכס, מצבו וסוג הרצפה</span></li>
-      <li><b>קובעים מועד</b><span>ביום ובשעה שנוחים לכם</span></li>
-      <li><b>נכנסים לנכס מוכן</b><span>עוברים יחד על העבודה בסיום</span></li>
+      <li><b>בודקים ומתמחרים</b><span>מגיעים לנכס ונותנים הצעת מחיר מסודרת</span></li>
+      <li><b>משפצים</b><span>לפי לוח זמנים שסוכם מראש</span></li>
+      <li><b>מנקים ומוסרים</b><span>ניקיון לפני אכלוס, ועוברים יחד על הנכס</span></li>
     </ol>
   </section>
 
   <section class="wrap faq" id="faq">
     <h2>שאלות שחוזרות.</h2>
     <div>
+      <details><summary>אתם עושים גם את השיפוץ וגם את הניקיון?</summary><p>כן. אותו צוות משפץ, ובסוף העבודה מנקה את הנכס לפני הכניסה ומטפל ברצפה. כך אין פער בין הקבלן שסיים לבין הדירה שמוכנה למגורים.</p></details>
       <details><summary>מה ההבדל בין פוליש קריסטל לפוליש גרניט פורצלן?</summary><p>פוליש קריסטל מיועד לשיש ולאבן טבעית: הוא סוגר נקבוביות ומעניק ברק עמוק. גרניט פורצלן קשה יותר ומקבל ליטוש וחומרים אחרים. נגיד לכם מה מתאים אחרי שנראה את הרצפה.</p></details>
       <details><summary>אפשר לחדש רצפה בלי להחליף אותה?</summary><p>ברוב המקרים כן. ליטוש מקצועי מסיר שריטות, כתמים ועמעום, בעלות נמוכה בהרבה מהחלפה.</p></details>
-      <details><summary>כמה זה עולה?</summary><p>תלוי בגודל הנכס, במצבו ובסוג השירות. התקשרו או שלחו תמונות בוואטסאפ ותקבלו הצעת מחיר.</p></details>
+      <details><summary>כמה עולה שיפוץ?</summary><p>תלוי בהיקף העבודה ובמצב הנכס. אנחנו מגיעים, בודקים ונותנים הצעת מחיר מסודרת לפני שמתחילים. לניקיון ולפוליש אפשר לקבל הצעה גם לפי תמונות בוואטסאפ.</p></details>
       <details><summary>אתם עובדים גם עם עסקים?</summary><p>כן – משרדים, חנויות ומבני מסחר, בעבודה חד פעמית או בהתקשרות קבועה.</p></details>
     </div>
   </section>
@@ -369,8 +420,8 @@ footer{background:var(--color-night);color:var(--color-on-night-2);border-top:va
   <div class="wrap contact-grid">
     <div>
       <img class="stamp" src="assets/logo-240.webp" srcset="assets/logo-240.webp 1x, assets/logo-480.webp 2x" width="96" height="96" loading="lazy" alt="הלוגו של ג׳מבו קלין">
-      <h2>נשמח לראות את הנכס.</h2>
-      <p class="lede">שלחו כמה תמונות של הרצפה או של הדירה, ונחזור עם הצעת מחיר.</p>
+      <h2>מתכננים שיפוץ?</h2>
+      <p class="lede">ספרו לנו מה רוצים לעשות, או שלחו תמונות של הנכס, ונחזור עם הצעת מחיר – לשיפוץ, לניקיון או לשניהם.</p>
       <a class="big-tel" href="tel:0528580800">052-858-0800</a>
       <a class="btn btn-ghost" href="https://wa.me/972528580800" target="_blank" rel="noopener"><svg><use href="#i-wa"/></svg>שליחת תמונות בוואטסאפ</a>
     </div>
@@ -380,13 +431,17 @@ footer{background:var(--color-night);color:var(--color-on-night-2);border-top:va
       <label>טלפון<input name="phone" type="tel" inputmode="tel" autocomplete="tel" required></label>
       <label>מה צריך?
         <select name="service">
+          <option>שיפוץ דירה או משרד</option>
+          <option>צבע</option>
+          <option>בנייה וטיח</option>
+          <option>אינסטלציה</option>
+          <option>שיפוץ + ניקיון בסיום</option>
           <option>ניקיון לפני אכלוס</option>
           <option>פוליש קריסטל</option>
           <option>פוליש לגרניט פורצלן</option>
           <option>חידוש רצפה</option>
           <option>ניקיון כללי לבית</option>
           <option>ניקיון משרד או מבנה מסחרי</option>
-          <option>שיפוצים או אינסטלציה</option>
         </select>
       </label>
       <p class="err" id="err" role="alert"></p>
@@ -397,7 +452,7 @@ footer{background:var(--color-night);color:var(--color-on-night-2);border-top:va
 
 <footer>
   <div class="wrap">
-    <p class="statement">רצפה מבריקה מתחילה <span>בשיחה אחת.</span></p>
+    <p class="statement">מהשיפוץ ועד הברק – <span>צוות אחד.</span></p>
     <div class="meta">
       <span class="mark"><svg class="roof" viewBox="0 0 40 28" aria-hidden="true"><use href="#i-roof"/></svg><b>ג׳מבו קלין</b></span>
       <a class="num" href="tel:0528580800">052-858-0800</a>
