@@ -7,6 +7,8 @@
 <meta name="description" content="ג׳מבו קלין – ניקיון דירות ומשרדים לפני אכלוס, פוליש קריסטל, פוליש לגרניט פורצלן וחידוש רצפות. לקוחות פרטיים ועסקיים. 052-858-0800">
 <meta property="og:title" content="ג׳מבו קלין | ניקיון לפני אכלוס ופוליש רצפות">
 <meta property="og:image" content="https://ymtzioni.github.io/jumbo-clean/assets/og.jpg">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Cpath d='M4 30 L20 12 L36 30' fill='none' stroke='%231b2552' stroke-width='6'/%3E%3Cpath d='M12 31 L20 22 L28 31' fill='none' stroke='%23c9962e' stroke-width='3.5'/%3E%3Cpath d='M33 2 Q33 9 40 9 Q33 9 33 16 Q33 9 26 9 Q33 9 33 2Z' fill='%23c9962e'/%3E%3C/svg%3E">
+<link rel="preload" as="image" href="assets/machine-800.webp" fetchpriority="high">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Secular+One&family=IBM+Plex+Sans+Hebrew:wght@400;500;600&display=swap" rel="stylesheet">
@@ -16,7 +18,8 @@
  * genre: editorial (local trade) · theme: custom · vibe: "honest local trade, navy and brass"
  * paper oklch(97.2% 0.008 85) · accent oklch(70% 0.12 78) brass · Secular One + IBM Plex Sans Hebrew
  * axes: light / display-heavy / warm · nav: N9 edge-aligned · footer: Ft2 inline · CTA: C1 chip + C4 sticky bar
- * enrichment: Tier-A CSS tile (polish before/after) · reveal: one load entrance, no scroll reveals
+ * enrichment: Tier-B hand-SVG from the logo (house-clipped photo, roof, arc, sparkle) + Tier-A CSS tile
+ * brand row echoes the logo motto + icon badges · reveal: one load entrance (arc draw + sparkle)
  * Hallmark · pre-emit critique: P4 H4 E4 S5 R5 V4
  */
 html,body{overflow-x:clip}
@@ -41,14 +44,16 @@ p{margin:0}
 
 /* nav · N9 edge-aligned */
 .bar{display:flex;justify-content:space-between;align-items:center;gap:var(--space-md);padding-block:var(--space-md)}
-.mark{display:flex;align-items:baseline;gap:var(--space-xs);text-decoration:none}
+.mark{display:flex;align-items:center;gap:var(--space-xs);text-decoration:none}
+.roof{width:40px;height:auto;flex:none}
+.roof .r1{stroke:var(--color-ink)} .roof .r2{stroke:var(--color-accent)}
 .mark b{font:400 var(--text-xl)/1 var(--font-display);white-space:nowrap}
 .mark b i{font-style:normal;color:var(--color-accent-ink)}
-.mark span{font-size:var(--text-xs);color:var(--color-ink-3);white-space:nowrap}
+.mark span{font-size:var(--text-sm);color:var(--color-accent-ink);font-weight:600;white-space:nowrap}
 .bar .chip{padding:var(--space-xs) var(--space-sm)}
 
 /* hero · H2 split diptych 7/5 */
-.hero{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:var(--space-2xl);align-items:end;padding-block:var(--space-xl) var(--space-3xl)}
+.hero{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:var(--space-2xl);align-items:end;padding-block:var(--space-lg) var(--space-2xl)}
 .hero-text{animation:enter var(--dur-med) var(--ease-out) both}
 @keyframes enter{from{opacity:0;transform:translateY(12px)}}
 .hero h1{font-size:var(--text-display);letter-spacing:-.01em}
@@ -59,11 +64,27 @@ p{margin:0}
 .call small{font-size:var(--text-xs);color:var(--color-ink-3);font-weight:500}
 .call .num{font:400 var(--text-phone)/1.05 var(--font-display);text-align:right;transition:color var(--dur-short) var(--ease-out)}
 .call:hover .num{color:var(--color-accent-ink)}
-.photo{margin:0;position:relative}
-.photo img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:35% center;border-radius:var(--radius-photo);background:var(--color-paper-2)}
-.ph{position:relative}
-.ph::after{content:"";position:absolute;inset:0;border-radius:var(--radius-photo);pointer-events:none;opacity:.12;mix-blend-mode:multiply;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
-.photo figcaption{margin-top:var(--space-xs);font-size:var(--text-xs);color:var(--color-ink-3)}
+.house{margin:0}
+.house svg{width:100%;height:auto;display:block;overflow:visible}
+.house .navy{stroke:var(--color-ink)} .house .gold{stroke:var(--color-accent)}
+.house .fill-navy{fill:var(--color-ink)} .house .fill-gold{fill:var(--color-accent)}
+.house .draw{stroke-dasharray:1;stroke-dashoffset:1;animation:draw 1.2s var(--ease-out) .15s forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+.house .pop{transform-box:fill-box;transform-origin:center;animation:pop .5s var(--ease-out) 1.15s both}
+@keyframes pop{from{opacity:0;transform:scale(.2) rotate(-40deg)}}
+.house figcaption{margin-top:var(--space-xs);font-size:var(--text-xs);color:var(--color-ink-3)}
+
+
+/* brand row · the logo's motto line and its four service badges */
+.motto{display:flex;align-items:center;gap:var(--space-md);font:400 var(--text-lg)/1.3 var(--font-display);color:var(--color-ink);white-space:nowrap}
+.motto::before,.motto::after{content:"";flex:1;height:var(--rule-strong);background:var(--color-accent)}
+.motto i{font-style:normal;color:var(--color-accent);margin-inline:var(--space-xs)}
+.badges{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));margin:var(--space-xl) 0 0;padding:0 0 var(--space-2xl);list-style:none}
+.badges li{display:grid;justify-items:center;gap:var(--space-sm);padding-inline:var(--space-sm);text-align:center}
+.badges li+li{border-inline-start:var(--rule-hair) solid var(--color-accent)}
+.disc{width:88px;height:88px;border-radius:50%;background:var(--color-ink);display:grid;place-items:center;box-shadow:0 0 0 3px var(--color-paper),0 0 0 5px var(--color-accent)}
+.disc svg{width:46px;height:46px;color:var(--color-accent)}
+.badges b{font:400 var(--text-lg)/1.2 var(--font-display)}
 
 /* split rows */
 .split{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:var(--space-2xl);align-items:start;padding-block:var(--space-3xl)}
@@ -120,14 +141,14 @@ p{margin:0}
 .who h2{font-size:var(--text-2xl)}
 .who ul{list-style:none;margin:var(--space-md) 0 0;padding:0}
 .who li{padding-block:var(--space-2xs);color:var(--color-ink-2)}
-.who li::before{content:"–";color:var(--color-accent-ink);margin-inline-end:var(--space-2xs)}
+.who li::before{content:"";display:inline-block;width:.7em;height:.7em;background:var(--color-accent);clip-path:polygon(50% 0,61% 39%,100% 50%,61% 61%,50% 100%,39% 61%,0 50%,39% 39%);margin-inline-end:var(--space-xs)}
 
 /* steps · F4 horizontal, 1/2/3/4, no connector */
-.steps{padding-block:var(--space-2xl);border-top:var(--rule-strong) solid var(--color-ink)}
+.steps{padding-block:var(--space-2xl);border-top:var(--rule-strong) solid var(--color-accent)}
 .steps h2{font-size:var(--text-2xl)}
 .steps ol{list-style:none;margin:var(--space-xl) 0 0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--space-lg);counter-reset:s}
 .steps li{counter-increment:s}
-.steps li::before{content:counter(s);display:block;font:400 var(--text-2xl)/1 var(--font-display);color:var(--color-accent-ink);margin-bottom:var(--space-xs)}
+.steps li::before{content:counter(s);display:grid;place-items:center;width:52px;height:52px;border-radius:50%;background:var(--color-ink);color:var(--color-accent);font:400 var(--text-xl)/1 var(--font-display);box-shadow:0 0 0 3px var(--color-paper),0 0 0 4px var(--color-accent);margin-bottom:var(--space-sm)}
 .steps b{display:block;font-weight:600}
 .steps span{color:var(--color-ink-2);font-size:var(--text-sm)}
 
@@ -170,6 +191,10 @@ footer{background:var(--color-night);color:var(--color-on-night-2);font-size:var
 footer .wrap{display:flex;flex-wrap:wrap;gap:var(--space-2xs) var(--space-md);padding-block:var(--space-lg)}
 footer a{text-decoration:none;color:var(--color-on-night)}
 footer i{font-style:normal;opacity:.5}
+.fmark{display:inline-flex;align-items:center;gap:var(--space-2xs);color:var(--color-on-night)}
+.fmark .roof{width:28px}
+.fmark .r1{stroke:var(--color-on-night)}
+.fmark .plus{color:var(--color-accent)}
 
 /* C4 sticky bottom bar · mobile only */
 .dock{display:none}
@@ -180,10 +205,18 @@ footer i{font-style:normal;opacity:.5}
   .hero{padding-bottom:var(--space-2xl)}
   .photo img{aspect-ratio:4/3}
   .floor{max-width:440px}
+  .house{max-width:460px;justify-self:center;width:100%}
+  .badges{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:var(--space-xl)}
+  .badges li:nth-child(3){border-inline-start:0}
   .steps ol{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:var(--space-xl)}
 }
 @media (max-width:640px){
   .mark span{display:none}
+  .bar .chip .num{display:none}
+  .bar .chip{padding:var(--space-xs)}
+  .motto{font-size:var(--text-md);gap:var(--space-xs)}
+  .disc{width:72px;height:72px}
+  .disc svg{width:38px;height:38px}
   .split{padding-block:var(--space-2xl)}
   .who{grid-template-columns:minmax(0,1fr);gap:var(--space-xl)}
   .who>div,.who>div:first-child{padding:0;border:0}
@@ -205,6 +238,8 @@ footer i{font-style:normal;opacity:.5}
   .hero-text{animation:fade 150ms linear both}
   @keyframes fade{from{opacity:0}}
   .tile.gloss::after{animation:none;transform:translateX(0)}
+  .house .draw{animation:none;stroke-dashoffset:0}
+  .house .pop{animation:fade 150ms linear both}
   .chip,.call .num{transition:none}
 }
 </style>
@@ -218,8 +253,8 @@ footer i{font-style:normal;opacity:.5}
 </svg>
 
 <header class="wrap bar">
-  <a class="mark" href="./"><b>ג׳מבו <i>קלין</i></b><span>ניקיון · פוליש · שיפוצים</span></a>
-  <a class="chip" href="tel:0528580800"><svg><use href="#i-phone"/></svg><span class="num">052-858-0800</span></a>
+  <a class="mark" href="./"><svg class="roof" viewBox="0 0 40 28" aria-hidden="true"><path class="r1" d="M3 25 L20 6 L37 25" fill="none" stroke-width="5"/><path class="r2" d="M11 26 L20 16 L29 26" fill="none" stroke-width="2.6"/></svg><b>ג׳מבו <i>קלין</i></b><span>+ שיפוצים</span></a>
+  <a class="chip" aria-label="התקשרו 052-858-0800" href="tel:0528580800"><svg><use href="#i-phone"/></svg><span class="num">052-858-0800</span></a>
 </header>
 
 <main>
@@ -232,10 +267,37 @@ footer i{font-style:normal;opacity:.5}
         <a class="chip" href="https://wa.me/972528580800" target="_blank" rel="noopener"><svg><use href="#i-wa"/></svg>שלחו הודעה בוואטסאפ</a>
       </div>
     </div>
-    <figure class="photo">
-      <div class="ph"><img src="assets/machine-800.webp" srcset="assets/machine-480.webp 480w, assets/machine-800.webp 800w, assets/machine-1100.webp 1100w" sizes="(max-width:900px) 100vw, 440px" width="1100" height="1365" fetchpriority="high" alt="מכונת פוליש מלטשת רצפת גרניט פורצלן"></div>
+    <figure class="house">
+      <svg viewBox="0 0 520 600" role="img" aria-label="מכונת פוליש מלטשת רצפת גרניט פורצלן">
+        <defs>
+          <clipPath id="house-clip"><path d="M100 198 L260 78 L420 198 V600 H100Z"/></clipPath>
+          <filter id="grain"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2"/><feColorMatrix values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 .14 0"/></filter>
+        </defs>
+        <path class="navy draw" pathLength="1" d="M44 455 A250 250 0 0 1 99 139" fill="none" stroke-width="11" stroke-linecap="round"/>
+        <path class="gold draw" pathLength="1" d="M99 139 A250 250 0 0 1 421 139" fill="none" stroke-width="11" stroke-linecap="round"/>
+        <rect class="fill-navy" x="138" y="96" width="28" height="70"/>
+        <g clip-path="url(#house-clip)">
+          <image href="assets/machine-800.webp" x="100" y="60" width="320" height="540" preserveAspectRatio="xMidYMid slice"/>
+          <rect x="100" y="60" width="320" height="540" filter="url(#grain)"/>
+        </g>
+        <path class="navy" d="M74 218 L260 58 L446 218" fill="none" stroke-width="26"/>
+        <path class="gold" d="M134 222 L260 116 L386 222" fill="none" stroke-width="9"/>
+        <path class="fill-gold pop" d="M452 70 Q452 104 486 104 Q452 104 452 138 Q452 104 418 104 Q452 104 452 70Z"/>
+        <path class="fill-gold pop" d="M492 143 Q492 156 505 156 Q492 156 492 169 Q492 156 479 156 Q492 156 492 143Z"/>
+      </svg>
       <figcaption>ליטוש גרניט פורצלן: החלק שכבר עבר ליטוש מחזיר אור.</figcaption>
     </figure>
+  </section>
+
+
+  <section class="wrap brand" aria-label="השירותים שלנו">
+    <p class="motto"><span>איכות<i>•</i>מקצועיות<i>•</i>ניקיון מבריק</span></p>
+    <ul class="badges">
+      <li><span class="disc"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" d="M3.5 11.5 L12 4 L20.5 11.5 M6 10 V20 H18 V10"/><path fill="currentColor" d="M12 11.4 Q12 15 15.6 15 Q12 15 12 18.6 Q12 15 8.4 15 Q12 15 12 11.4Z"/></svg></span><b>ניקיון הבית</b></li>
+      <li><span class="disc"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M10 5.5 Q10 13 17.5 13 Q10 13 10 20.5 Q10 13 2.5 13 Q10 13 10 5.5Z"/><path fill="currentColor" d="M18.5 2.5 Q18.5 5.5 21.5 5.5 Q18.5 5.5 18.5 8.5 Q18.5 5.5 15.5 5.5 Q18.5 5.5 18.5 2.5Z"/><path fill="currentColor" d="M19 15.8 Q19 18 21.2 18 Q19 18 19 20.2 Q19 18 16.8 18 Q19 18 19 15.8Z"/></svg></span><b>פוליש</b></li>
+      <li><span class="disc"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" d="M2.5 20.5h9v-3.5h-9zM11.5 20.5h9v-3.5h-9zM7 17v-3.5h9V17"/><path fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" d="M14.5 3.5l5.5 5.5-4.5 1-2-2z M13.5 8l-3 3"/></svg></span><b>שיפוצים</b></li>
+      <li><span class="disc"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" d="M2.5 9.5h8a5.5 5.5 0 0 1 5.5 5.5v.5 M9 9.5V5.5 M6 5.5h6 M2.5 6.5v6"/><path fill="currentColor" d="M16 17.5c-1.2 1.6-1.6 2.4-1.6 3.1a1.6 1.6 0 0 0 3.2 0c0-.7-.4-1.5-1.6-3.1z"/></svg></span><b>אינסטלציה</b></li>
+    </ul>
   </section>
 
   <div class="band">
@@ -352,7 +414,7 @@ footer i{font-style:normal;opacity:.5}
 
 <footer>
   <div class="wrap">
-    <span>ג׳מבו קלין</span><i>·</i>
+    <span class="fmark"><svg class="roof" viewBox="0 0 40 28" aria-hidden="true"><path class="r1" d="M3 25 L20 6 L37 25" fill="none" stroke-width="5"/><path class="r2" d="M11 26 L20 16 L29 26" fill="none" stroke-width="2.6"/></svg>ג׳מבו קלין <span class="plus">+ שיפוצים</span></span><i>·</i>
     <a href="tel:0528580800" class="num">052-858-0800</a><i>·</i>
     <span>© <span id="y"></span></span>
   </div>
