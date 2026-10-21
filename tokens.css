@@ -1,21 +1,24 @@
-/* Hallmark · tokens · Jumbo Clean · custom (vibe: "honest local trade, navy and brass") */
+/* Hallmark · tokens · Jumbo Clean v4 · custom (vibe: "modern trade brand, condensed type, navy and brass") */
 :root{
   /* colour — anchored on the logo's navy and brass */
-  --color-paper:      oklch(97.2% 0.008 85);
-  --color-paper-2:    oklch(93.8% 0.014 82);
-  --color-ink:        oklch(25% 0.06 266);
-  --color-ink-2:      oklch(45% 0.03 266);
-  --color-ink-3:      oklch(58% 0.02 266);
-  --color-rule:       oklch(25% 0.06 266 / 0.14);
-  --color-rule-strong:oklch(25% 0.06 266 / 0.35);
-  --color-accent:     oklch(70% 0.12 78);
+  --color-paper:      oklch(97.4% 0.006 85);
+  --color-paper-2:    oklch(94% 0.012 82);
+  --color-paper-3:    oklch(90.5% 0.016 80);
+  --color-ink:        oklch(22% 0.055 266);
+  --color-ink-2:      oklch(42% 0.035 266);
+  --color-ink-3:      oklch(56% 0.02 266);
+  --color-rule:       oklch(22% 0.055 266 / 0.12);
+  --color-rule-strong:oklch(22% 0.055 266 / 0.3);
+  --color-accent:     oklch(74% 0.125 80);
+  --color-accent-2:   oklch(80% 0.11 85);
   --color-accent-ink: oklch(50% 0.10 72);
-  --color-night:      oklch(21% 0.055 266);
-  --color-night-2:    oklch(28% 0.06 266);
-  --color-on-night:   oklch(95% 0.01 85);
-  --color-on-night-2: oklch(78% 0.02 266);
-  --color-focus:      oklch(62% 0.16 250);
-  --color-whatsapp:   oklch(62% 0.15 150);
+  --color-night:      oklch(18.5% 0.05 266);
+  --color-night-2:    oklch(25% 0.055 266);
+  --color-night-3:    oklch(32% 0.05 266);
+  --color-on-night:   oklch(96% 0.008 85);
+  --color-on-night-2: oklch(76% 0.025 266);
+  --color-glass:      oklch(18.5% 0.05 266 / 0.82);
+  --color-focus:      oklch(66% 0.16 245);
   --color-stone:      oklch(90% 0.012 80);
   --color-stone-2:    oklch(85% 0.014 80);
   --color-stone-vein: oklch(60% 0.02 75 / 0.32);
@@ -24,26 +27,27 @@
   --color-sheen-soft: oklch(100% 0 0 / 0.35);
 
   /* type */
-  --font-display: "Secular One", "IBM Plex Sans Hebrew", sans-serif;
-  --font-body:    "IBM Plex Sans Hebrew", system-ui, sans-serif;
+  --font-display: "Karantina", "Miriam Libre", sans-serif;
+  --font-body:    "Miriam Libre", system-ui, sans-serif;
 
   --text-xs: 0.8125rem; --text-sm: 0.9375rem; --text-md: 1.0625rem;
-  --text-lg: 1.25rem;   --text-xl: 1.625rem;  --text-2xl: 2.125rem;
-  --text-3xl: clamp(2rem, 4vw, 2.875rem);
-  --text-display: clamp(2.5rem, 6.2vw, 5rem);
-  --text-phone: clamp(2rem, 5vw, 3.5rem);
+  --text-lg: 1.25rem;   --text-xl: 1.75rem;   --text-2xl: 2.5rem;
+  --text-3xl: clamp(2.75rem, 5.5vw, 4.25rem);
+  --text-display: clamp(4rem, 10.5vw, 9.25rem);
+  --text-phone: clamp(3rem, 7vw, 5.5rem);
+  --text-statement: clamp(3rem, 8vw, 7rem);
 
   /* space · 4pt */
   --space-3xs: 0.25rem; --space-2xs: 0.5rem; --space-xs: 0.75rem;
   --space-sm: 1rem;     --space-md: 1.5rem;  --space-lg: 2rem;
   --space-xl: 3rem;     --space-2xl: 4.5rem; --space-3xl: 7rem;
 
-  --radius-input: 2px; --radius-chip: 2px; --radius-photo: 3px;
+  --radius-tile: 22px; --radius-pill: 999px; --radius-input: 12px;
   --rule-hair: 1px; --rule-strong: 2px;
 
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
-  --dur-short: 180ms; --dur-med: 420ms; --dur-long: 1600ms;
+  --dur-short: 180ms; --dur-med: 480ms; --dur-long: 1600ms;
 
   --z-base: 0; --z-raised: 10; --z-sticky: 40;
 }

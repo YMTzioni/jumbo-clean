@@ -1,3 +1,24 @@
 [
-  { "date": "2026-10-21", "macrostructure": "Split Studio", "theme": "custom", "theme_axes": "light / display-heavy / warm", "vibe": "honest local trade, navy and brass", "enrichment": "Tier-A CSS tile (polish before/after)", "nav": "N9", "footer": "Ft2", "brief": "Jumbo Clean · move-in cleaning + floor polish, Hebrew RTL" }
+  {
+    "date": "2026-10-21",
+    "macrostructure": "Bento Grid",
+    "theme": "custom",
+    "theme_axes": "light / display-condensed / warm",
+    "vibe": "modern trade brand, condensed type, navy and brass",
+    "enrichment": "Tier-B logo SVG (house-clipped photo) + Tier-A CSS tiles",
+    "nav": "N5",
+    "footer": "Ft5",
+    "brief": "Jumbo Clean v4 · more distinctive fonts (Karantina + Miriam Libre), modern professional"
+  },
+  {
+    "date": "2026-10-21",
+    "macrostructure": "Split Studio",
+    "theme": "custom",
+    "theme_axes": "light / display-heavy / warm",
+    "vibe": "honest local trade, navy and brass",
+    "enrichment": "Tier-A CSS tile (polish before/after)",
+    "nav": "N9",
+    "footer": "Ft2",
+    "brief": "Jumbo Clean · move-in cleaning + floor polish, Hebrew RTL"
+  }
 ]
