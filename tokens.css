@@ -1,0 +1,49 @@
+/* Hallmark · tokens · Jumbo Clean · custom (vibe: "honest local trade, navy and brass") */
+:root{
+  /* colour — anchored on the logo's navy and brass */
+  --color-paper:      oklch(97.2% 0.008 85);
+  --color-paper-2:    oklch(93.8% 0.014 82);
+  --color-ink:        oklch(25% 0.06 266);
+  --color-ink-2:      oklch(45% 0.03 266);
+  --color-ink-3:      oklch(58% 0.02 266);
+  --color-rule:       oklch(25% 0.06 266 / 0.14);
+  --color-rule-strong:oklch(25% 0.06 266 / 0.35);
+  --color-accent:     oklch(70% 0.12 78);
+  --color-accent-ink: oklch(50% 0.10 72);
+  --color-night:      oklch(21% 0.055 266);
+  --color-night-2:    oklch(28% 0.06 266);
+  --color-on-night:   oklch(95% 0.01 85);
+  --color-on-night-2: oklch(78% 0.02 266);
+  --color-focus:      oklch(62% 0.16 250);
+  --color-whatsapp:   oklch(62% 0.15 150);
+  --color-stone:      oklch(90% 0.012 80);
+  --color-stone-2:    oklch(85% 0.014 80);
+  --color-stone-vein: oklch(60% 0.02 75 / 0.32);
+  --color-grout:      oklch(70% 0.01 80);
+  --color-sheen:      oklch(100% 0 0 / 0.75);
+  --color-sheen-soft: oklch(100% 0 0 / 0.35);
+
+  /* type */
+  --font-display: "Secular One", "IBM Plex Sans Hebrew", sans-serif;
+  --font-body:    "IBM Plex Sans Hebrew", system-ui, sans-serif;
+
+  --text-xs: 0.8125rem; --text-sm: 0.9375rem; --text-md: 1.0625rem;
+  --text-lg: 1.25rem;   --text-xl: 1.625rem;  --text-2xl: 2.125rem;
+  --text-3xl: clamp(2rem, 4vw, 2.875rem);
+  --text-display: clamp(2.5rem, 6.2vw, 5rem);
+  --text-phone: clamp(2rem, 5vw, 3.5rem);
+
+  /* space · 4pt */
+  --space-3xs: 0.25rem; --space-2xs: 0.5rem; --space-xs: 0.75rem;
+  --space-sm: 1rem;     --space-md: 1.5rem;  --space-lg: 2rem;
+  --space-xl: 3rem;     --space-2xl: 4.5rem; --space-3xl: 7rem;
+
+  --radius-input: 2px; --radius-chip: 2px; --radius-photo: 3px;
+  --rule-hair: 1px; --rule-strong: 2px;
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-short: 180ms; --dur-med: 420ms; --dur-long: 1600ms;
+
+  --z-base: 0; --z-raised: 10; --z-sticky: 40;
+}

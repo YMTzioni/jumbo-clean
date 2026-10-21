@@ -3,505 +3,379 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>ג'מבו קלין | ניקיון לפני אכלוס ופוליש קריסטל</title>
-<meta name="description" content="ג'מבו קלין - ניקיון דירות ומשרדים לפני אכלוס, פוליש קריסטל, פוליש לגרניט פורצלן וחידוש רצפות. לקוחות פרטיים ועסקיים. 052-858-0800">
-<meta property="og:title" content="ג'מבו קלין | ניקיון לפני אכלוס ופוליש קריסטל">
+<title>ג׳מבו קלין | ניקיון לפני אכלוס ופוליש רצפות</title>
+<meta name="description" content="ג׳מבו קלין – ניקיון דירות ומשרדים לפני אכלוס, פוליש קריסטל, פוליש לגרניט פורצלן וחידוש רצפות. לקוחות פרטיים ועסקיים. 052-858-0800">
+<meta property="og:title" content="ג׳מבו קלין | ניקיון לפני אכלוס ופוליש רצפות">
 <meta property="og:image" content="https://ymtzioni.github.io/jumbo-clean/assets/og.jpg">
-<link rel="preload" as="image" type="image/webp" imagesrcset="assets/hero-640.webp 640w, assets/hero-1024.webp 1024w, assets/hero-1600.webp 1600w, assets/hero-2200.webp 2200w" imagesizes="100vw" fetchpriority="high">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@300;400;500;700&family=Assistant:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Secular+One&family=IBM+Plex+Sans+Hebrew:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tokens.css">
 <style>
-  :root{
-    --navy:#0e1a3a; --navy-2:#091228; --navy-soft:#1b2a52;
-    --gold:#b8955a; --gold-lt:#d8bf8f; --gold-dk:#8e6f3c;
-    --ivory:#f7f4ee; --paper:#fffdf9;
-    --ink:#141a2e; --muted:#6a6f80; --line:rgba(14,26,58,.12); --line-lt:rgba(255,255,255,.16);
-    --serif:"Frank Ruhl Libre",Georgia,serif; --sans:"Assistant",system-ui,sans-serif;
-  }
-  *{box-sizing:border-box}
-  html{scroll-behavior:smooth}
-  body{margin:0;font-family:var(--sans);font-weight:400;color:var(--ink);background:var(--paper);line-height:1.7;-webkit-font-smoothing:antialiased;font-size:17px}
-  img{max-width:100%;display:block}
-  a{color:inherit;text-decoration:none}
-  .wrap{width:min(1240px,100% - 48px);margin-inline:auto}
-  h1,h2,h3{font-family:var(--serif);font-weight:400;line-height:1.12;margin:0;letter-spacing:-.01em}
-  .kicker{display:flex;align-items:center;gap:14px;font-size:.78rem;font-weight:600;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);margin-bottom:22px}
-  .kicker::before{content:"";width:40px;height:1px;background:currentColor}
-  .kicker.lt{color:var(--gold-lt)}
-  .sec{padding:130px 0}
+/* Hallmark · macrostructure: Split Studio · H2 knobs: ratio=7/5, right=photo, divider=negative-space
+ * genre: editorial (local trade) · theme: custom · vibe: "honest local trade, navy and brass"
+ * paper oklch(97.2% 0.008 85) · accent oklch(70% 0.12 78) brass · Secular One + IBM Plex Sans Hebrew
+ * axes: light / display-heavy / warm · nav: N9 edge-aligned · footer: Ft2 inline · CTA: C1 chip + C4 sticky bar
+ * enrichment: Tier-A CSS tile (polish before/after) · reveal: one load entrance, no scroll reveals
+ * Hallmark · pre-emit critique: P4 H4 E4 S5 R5 V4
+ */
+html,body{overflow-x:clip}
+*{box-sizing:border-box}
+body{margin:0;background:var(--color-paper);color:var(--color-ink);font-family:var(--font-body);font-size:var(--text-md);line-height:1.7;-webkit-font-smoothing:antialiased}
+img{max-width:100%;height:auto;display:block}
+a{color:inherit}
+h1,h2,h3{font-family:var(--font-display);font-weight:400;line-height:1.1;margin:0;overflow-wrap:anywhere;min-width:0}
+p{margin:0}
+.wrap{width:min(1180px,100% - 2*var(--space-md));margin-inline:auto}
+:focus-visible{outline:3px solid var(--color-focus);outline-offset:3px}
+.num{direction:ltr;unicode-bidi:isolate;font-variant-numeric:tabular-nums;white-space:nowrap}
 
-  .btn{display:inline-flex;align-items:center;justify-content:center;gap:12px;font-family:var(--sans);font-weight:600;font-size:.95rem;letter-spacing:.06em;padding:18px 34px;border:1px solid transparent;cursor:pointer;transition:background .25s,color .25s,border-color .25s}
-  .btn svg{width:18px;height:18px}
-  .btn-gold{background:var(--gold);color:#fff;border-color:var(--gold)}
-  .btn-gold:hover{background:var(--gold-dk);border-color:var(--gold-dk)}
-  .btn-line{color:#fff;border-color:rgba(255,255,255,.45)}
-  .btn-line:hover{background:#fff;color:var(--navy)}
-  .btn-line span{direction:ltr}
-  .btn-navy{background:var(--navy);color:#fff}
-  .btn-navy:hover{background:var(--navy-soft)}
+/* chip CTA (C1 · rectangular · arrow) */
+.chip{display:inline-flex;align-items:center;gap:var(--space-2xs);white-space:nowrap;font:600 var(--text-sm)/1 var(--font-body);padding:var(--space-sm) var(--space-md);border:var(--rule-strong) solid var(--color-ink);border-radius:var(--radius-chip);background:transparent;color:var(--color-ink);text-decoration:none;cursor:pointer;transition:background-color var(--dur-short) var(--ease-out),color var(--dur-short) var(--ease-out)}
+.chip:hover{background:var(--color-ink);color:var(--color-paper)}
+.chip:active{transform:translateY(1px)}
+.chip[disabled]{opacity:.45;cursor:not-allowed}
+.chip svg{width:18px;height:18px;flex:none}
+.chip.solid{background:var(--color-ink);color:var(--color-paper)}
+.chip.solid:hover{background:var(--color-night-2);border-color:var(--color-night-2)}
 
-  /* header */
-  header{position:fixed;top:0;inset-inline:0;z-index:50;transition:background .35s,box-shadow .35s}
-  header.solid{background:rgba(255,253,249,.97);box-shadow:0 1px 0 var(--line);backdrop-filter:blur(8px)}
-  .nav{display:flex;align-items:center;justify-content:space-between;height:88px;transition:height .35s}
-  header.solid .nav{height:72px}
-  .mark{display:flex;flex-direction:column;line-height:1;color:#fff;transition:color .35s}
-  header.solid .mark{color:var(--navy)}
-  .mark b{font-family:var(--serif);font-weight:500;font-size:1.65rem}
-  .mark small{font-size:.62rem;letter-spacing:.42em;color:var(--gold-lt);margin-top:6px;font-weight:600}
-  header.solid .mark small{color:var(--gold)}
-  .nav ul{display:flex;gap:38px;list-style:none;margin:0;padding:0;font-size:.95rem;color:rgba(255,255,255,.85);transition:color .35s}
-  header.solid .nav ul{color:var(--muted)}
-  .nav ul a{position:relative;padding:6px 0}
-  .nav ul a::after{content:"";position:absolute;bottom:0;inset-inline:0;height:1px;background:var(--gold);transform:scaleX(0);transition:transform .3s}
-  .nav ul a:hover::after{transform:none}
-  .nav-tel{display:flex;align-items:center;gap:12px;color:#fff;font-weight:600;letter-spacing:.06em;transition:color .35s}
-  header.solid .nav-tel{color:var(--navy)}
-  .nav-tel span{direction:ltr}
-  .nav-tel i{width:40px;height:40px;border:1px solid var(--gold);border-radius:50%;display:grid;place-items:center;color:var(--gold)}
-  .nav-tel svg{width:16px;height:16px}
+/* nav · N9 edge-aligned */
+.bar{display:flex;justify-content:space-between;align-items:center;gap:var(--space-md);padding-block:var(--space-md)}
+.mark{display:flex;align-items:baseline;gap:var(--space-xs);text-decoration:none}
+.mark b{font:400 var(--text-xl)/1 var(--font-display);white-space:nowrap}
+.mark b i{font-style:normal;color:var(--color-accent-ink)}
+.mark span{font-size:var(--text-xs);color:var(--color-ink-3);white-space:nowrap}
+.bar .chip{padding:var(--space-xs) var(--space-sm)}
 
-  /* hero */
-  .hero{background:var(--navy-2) url(data:image/webp;base64,UklGRmYAAABXRUJQVlA4IFoAAACQAwCdASoYAA0APu1orU6ppiSiMAgBMB2JQBOgAoKd10v7HG74AOk8l26zfTT28GMgRUS69DpFmqysBzPVOtRiZtlbq8V/JxzNG0i6o7T5tHSfyUnnlMgAAAA=) center/cover;position:relative;min-height:100vh;min-height:100svh;display:flex;align-items:flex-end;color:#fff;overflow:hidden}
-  .hero>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(1.06);animation:kb 14s ease-out forwards}
-  @keyframes kb{to{transform:scale(1)}}
-  .hero::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(to left,rgba(9,18,40,.9) 0%,rgba(9,18,40,.6) 45%,rgba(9,18,40,.15) 100%),linear-gradient(to top,rgba(9,18,40,.7),transparent 45%)}
-  .hero .wrap{position:relative;z-index:2}
-  .hero-in{padding:0 0 110px;max-width:720px}
-  .hero h1{font-size:clamp(2.8rem,6.4vw,5.6rem);font-weight:300}
-  .hero h1 em{font-style:normal;color:var(--gold-lt)}
-  .hero p{font-size:1.2rem;font-weight:300;color:rgba(255,255,255,.82);margin:28px 0 44px;max-width:540px}
-  .hero-cta{display:flex;flex-wrap:wrap;gap:14px}
-  .hero-meta{position:absolute;bottom:44px;inset-inline-end:0;display:flex;gap:40px;font-size:.82rem;letter-spacing:.2em;color:rgba(255,255,255,.6)}
-  .hero-meta span{display:flex;align-items:center;gap:10px}
-  .hero-meta span::before{content:"";width:5px;height:5px;background:var(--gold);transform:rotate(45deg)}
+/* hero · H2 split diptych 7/5 */
+.hero{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:var(--space-2xl);align-items:end;padding-block:var(--space-xl) var(--space-3xl)}
+.hero-text{animation:enter var(--dur-med) var(--ease-out) both}
+@keyframes enter{from{opacity:0;transform:translateY(12px)}}
+.hero h1{font-size:var(--text-display);letter-spacing:-.01em}
+.hero h1 mark{background:none;color:inherit;box-shadow:inset 0 -0.18em 0 var(--color-accent)}
+.hero .lede{margin-top:var(--space-lg);font-size:var(--text-lg);color:var(--color-ink-2);max-width:34ch}
+.hero-cta{margin-top:var(--space-xl);display:flex;flex-wrap:wrap;align-items:center;gap:var(--space-lg)}
+.call{display:grid;text-decoration:none}
+.call small{font-size:var(--text-xs);color:var(--color-ink-3);font-weight:500}
+.call .num{font:400 var(--text-phone)/1.05 var(--font-display);text-align:right;transition:color var(--dur-short) var(--ease-out)}
+.call:hover .num{color:var(--color-accent-ink)}
+.photo{margin:0;position:relative}
+.photo img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:35% center;border-radius:var(--radius-photo);background:var(--color-paper-2)}
+.ph{position:relative}
+.ph::after{content:"";position:absolute;inset:0;border-radius:var(--radius-photo);pointer-events:none;opacity:.12;mix-blend-mode:multiply;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.photo figcaption{margin-top:var(--space-xs);font-size:var(--text-xs);color:var(--color-ink-3)}
 
-  /* intro */
-  .intro-grid{display:grid;grid-template-columns:1fr 1.5fr;gap:80px;align-items:start}
-  .intro h2{font-size:clamp(2rem,3.6vw,3.2rem);color:var(--navy)}
-  .intro .lead{font-family:var(--serif);font-size:clamp(1.3rem,2vw,1.65rem);font-weight:300;line-height:1.6;color:var(--ink);margin:0}
-  .intro .lead em{font-style:normal;color:var(--gold-dk)}
-  .facts{display:grid;grid-template-columns:repeat(3,1fr);margin-top:56px;border-top:1px solid var(--line)}
-  .fact{padding:28px 0 0}
-  .fact+.fact{padding-inline-start:28px;border-inline-start:1px solid var(--line)}
-  .fact b{display:block;font-family:var(--serif);font-weight:400;font-size:2.4rem;color:var(--navy);line-height:1;margin-bottom:8px}
-  .fact span{color:var(--muted);font-size:.95rem}
+/* split rows */
+.split{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:var(--space-2xl);align-items:start;padding-block:var(--space-3xl)}
+.split.rev{grid-template-columns:minmax(0,6fr) minmax(0,5fr)}
+.split.rev>.side-text{order:2}
+.split h2{font-size:var(--text-3xl)}
+.split .side-text p{margin-top:var(--space-md);color:var(--color-ink-2);max-width:40ch}
+.split .side-text .chip{margin-top:var(--space-lg)}
+.band{background:var(--color-paper-2)}
 
-  /* services */
-  .services{background:var(--ivory)}
-  .svc-grid{display:grid;grid-template-columns:1fr 1.15fr;gap:90px;align-items:start}
-  .svc-grid>*{min-width:0}
-  .svc-media{position:sticky;top:110px}
-  .svc-media figure{margin:0;position:relative}
-  .svc-media img{width:100%;aspect-ratio:4/5;object-fit:cover}
-  .svc-media figure::after{content:"";position:absolute;inset:18px;border:1px solid rgba(255,255,255,.5);pointer-events:none}
-  .svc-media figcaption{margin-top:16px;font-size:.85rem;color:var(--muted);letter-spacing:.04em}
-  .svc-head h2{font-size:clamp(2.2rem,4vw,3.4rem);color:var(--navy)}
-  .svc-head p{color:var(--muted);margin:18px 0 40px;max-width:520px}
-  .svc-list{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
-  .svc-list li{display:grid;grid-template-columns:64px 1fr;gap:12px;padding:34px 0;border-bottom:1px solid var(--line);transition:padding .3s}
-  .svc-list li:hover{padding-inline-start:10px}
-  .svc-list .n{font-family:var(--serif);font-size:1rem;color:var(--gold);padding-top:8px}
-  .svc-list h3{font-size:1.75rem;color:var(--navy);margin-bottom:8px}
-  .svc-list p{margin:0;color:var(--muted)}
-  .svc-note{margin-top:30px;font-size:.95rem;color:var(--muted)}
-  .svc-note b{color:var(--navy);font-weight:600}
+/* spec sheet · F3 two-col, rule every row */
+.spec{width:100%;border-collapse:collapse}
+.spec caption{text-align:right;font:400 var(--text-lg)/1.3 var(--font-display);padding-bottom:var(--space-sm)}
+.spec th,.spec td{text-align:right;vertical-align:top;padding:var(--space-sm) 0;border-top:var(--rule-hair) solid var(--color-rule)}
+.spec tr:last-child th,.spec tr:last-child td{border-bottom:var(--rule-hair) solid var(--color-rule)}
+.spec th{font-weight:600;width:9.5em;padding-left:var(--space-md);white-space:nowrap}
+.spec td{color:var(--color-ink-2)}
 
-  /* polish feature */
-  .polish{background:var(--navy);color:#fff}
-  .polish-grid{display:grid;grid-template-columns:1.1fr 1fr;min-height:720px}
-  .polish-img{position:relative}
-  .polish-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-  .polish-txt{padding-block:130px;padding-inline-start:90px;padding-inline-end:max(24px,calc((100vw - 1240px)/2));display:flex;flex-direction:column;justify-content:center}
-  .polish h2{font-size:clamp(2.2rem,4vw,3.4rem);font-weight:300}
-  .polish h2 em{font-style:normal;color:var(--gold-lt)}
-  .polish .p{color:rgba(255,255,255,.72);margin:24px 0 44px;font-size:1.08rem;max-width:520px}
-  .pol-items{border-top:1px solid var(--line-lt)}
-  .pol-items div{padding:24px 0;border-bottom:1px solid var(--line-lt);display:grid;grid-template-columns:1fr 1.4fr;gap:24px;align-items:baseline}
-  .pol-items h3{font-size:1.3rem;color:var(--gold-lt)}
-  .pol-items p{margin:0;color:rgba(255,255,255,.7);font-size:.98rem}
+/* materials list in polish */
+.mats{margin-top:var(--space-lg);border-top:var(--rule-strong) solid var(--color-ink)}
+.mats div{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.5fr);gap:var(--space-md);padding-block:var(--space-sm);border-bottom:var(--rule-hair) solid var(--color-rule)}
+.mats dt{font-weight:600}
+.mats dd{margin:0;color:var(--color-ink-2)}
 
-  /* audience */
-  .sec-title{display:flex;justify-content:space-between;align-items:end;gap:40px}
-  .sec-title h2{font-size:clamp(2.2rem,4vw,3.4rem);color:var(--navy);max-width:640px}
-  .sec-title p{color:var(--muted);max-width:380px;margin:0}
-  .aud-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:64px}
-  .aud-card{position:relative;min-height:600px;color:#fff;display:flex;align-items:flex-end;overflow:hidden;background:var(--navy)}
-  .aud-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1.2s ease}
-  .aud-card:hover img{transform:scale(1.04)}
-  .aud-card::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(to top,rgba(9,18,40,.94) 0%,rgba(9,18,40,.4) 55%,rgba(9,18,40,.05) 100%)}
-  .aud-body{position:relative;z-index:2;padding:48px}
-  .aud-body small{font-size:.75rem;letter-spacing:.32em;color:var(--gold-lt);font-weight:600}
-  .aud-body h3{font-size:2.4rem;margin:10px 0 18px;font-weight:300}
-  .aud-body ul{list-style:none;padding:0;margin:0;display:grid;gap:8px;color:rgba(255,255,255,.85)}
-  .aud-body li{display:flex;gap:12px;align-items:baseline}
-  .aud-body li::before{content:"";width:14px;height:1px;background:var(--gold);flex:none;transform:translateY(-4px)}
+/* Tier-A CSS art · a floor half polished */
+.floor{margin:0}
+.tiles{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:3px;background:var(--color-grout);padding:3px;aspect-ratio:1;border-radius:var(--radius-photo);overflow:hidden;position:relative}
+.tile{position:relative;overflow:hidden;background:
+  radial-gradient(120% 80% at 20% 10%,var(--color-stone) 0%,transparent 70%),
+  linear-gradient(128deg,transparent 47%,var(--color-stone-vein) 49.2%,transparent 51.5%),
+  var(--color-stone-2)}
+.tile:nth-child(even){background:
+  radial-gradient(120% 90% at 80% 90%,var(--color-stone) 0%,transparent 70%),
+  linear-gradient(162deg,transparent 60%,var(--color-stone-vein) 61.5%,transparent 63%),
+  var(--color-stone-2)}
+.tile:nth-child(5n){background:
+  radial-gradient(100% 100% at 50% 40%,var(--color-stone) 0%,transparent 75%),
+  var(--color-stone-2)}
+/* right half (RTL start = "before"): dull */
+.tile.dull{filter:saturate(.5) brightness(.86) contrast(.85)}
+.tile.dull::before{content:"";position:absolute;inset:0;opacity:.35;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.4' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+/* left half: polished, a sheen sweeps across once */
+.tile.gloss::before{content:"";position:absolute;inset:0;background:linear-gradient(160deg,var(--color-sheen-soft) 0%,transparent 35%,transparent 70%,var(--color-sheen-soft) 100%)}
+.tile.gloss::after{content:"";position:absolute;inset:-40%;background:linear-gradient(115deg,transparent 42%,var(--color-sheen) 50%,transparent 58%);transform:translateX(60%);animation:sheen var(--dur-long) var(--ease-in-out) .6s both}
+@keyframes sheen{to{transform:translateX(-60%)}}
+.tiles::after{content:"";position:absolute;top:0;bottom:0;left:50%;width:var(--rule-strong);background:var(--color-accent)}
+.floor figcaption{display:flex;justify-content:space-between;margin-top:var(--space-xs);font-size:var(--text-xs);color:var(--color-ink-3)}
 
-  /* standards */
-  .std{background:var(--ivory)}
-  .std-grid{display:grid;grid-template-columns:repeat(4,1fr);margin-top:64px;border-top:1px solid var(--line)}
-  .std-item{padding-top:40px;padding-inline:30px}
-  .std-item:first-child{padding-inline-start:0}
-  .std-item+.std-item{border-inline-start:1px solid var(--line)}
-  .std-item .r{font-family:var(--serif);color:var(--gold);font-size:.95rem;letter-spacing:.1em}
-  .std-item h3{font-size:1.5rem;color:var(--navy);margin:14px 0 10px}
-  .std-item p{margin:0;color:var(--muted);font-size:.98rem}
+/* who · two halves, vertical rule */
+.who{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);padding-block:var(--space-2xl) var(--space-3xl)}
+.who>div{padding-inline:var(--space-xl)}
+.who>div:first-child{padding-inline-start:0;border-inline-end:var(--rule-hair) solid var(--color-rule-strong)}
+.who>div:last-child{padding-inline-end:0}
+.who h2{font-size:var(--text-2xl)}
+.who ul{list-style:none;margin:var(--space-md) 0 0;padding:0}
+.who li{padding-block:var(--space-2xs);color:var(--color-ink-2)}
+.who li::before{content:"–";color:var(--color-accent-ink);margin-inline-end:var(--space-2xs)}
 
-  /* contact */
-  .contact{background:var(--navy-2);color:#fff;position:relative;overflow:hidden}
-  .contact::before{content:"";position:absolute;inset:0;background:url(assets/lobby-600.webp) center/cover;opacity:.12}
-  .contact-grid{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:100px;align-items:start}
-  .contact-grid>*{min-width:0}
-  .contact h2{font-size:clamp(2.4rem,4.4vw,3.8rem);font-weight:300}
-  .contact h2 em{font-style:normal;color:var(--gold-lt)}
-  .contact .p{color:rgba(255,255,255,.72);margin:22px 0 48px;max-width:440px}
-  .tel-label{font-size:.75rem;letter-spacing:.32em;color:var(--gold-lt);font-weight:600}
-  .tel-big{display:block;font-family:var(--serif);font-size:clamp(2.2rem,4vw,3.2rem);font-weight:300;color:#fff;direction:ltr;text-align:right;letter-spacing:.02em;transition:color .25s}
-  .tel-big:hover{color:var(--gold-lt)}
-  .wa-link{display:inline-flex;align-items:center;gap:10px;margin-top:26px;color:rgba(255,255,255,.85);border-bottom:1px solid var(--gold);padding-bottom:4px}
-  .wa-link svg{width:18px;height:18px;color:var(--gold-lt)}
-  form{background:var(--paper);color:var(--ink);padding:52px 48px;display:grid;gap:26px}
-  form h3{font-size:1.9rem;color:var(--navy)}
-  form .sub{margin:-16px 0 0;color:var(--muted);font-size:.95rem}
-  .row{display:grid;grid-template-columns:1fr 1fr;gap:26px}
-  label{display:grid;gap:4px;font-size:.78rem;letter-spacing:.14em;font-weight:600;color:var(--muted)}
-  input,select,textarea{font:inherit;font-size:1.05rem;letter-spacing:0;font-weight:400;padding:10px 0;border:0;border-bottom:1px solid rgba(14,26,58,.25);background:transparent;color:var(--ink);border-radius:0;transition:border-color .2s;width:100%}
-  select{appearance:none;-webkit-appearance:none;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23b8955a' stroke-width='1.5'/%3E%3C/svg%3E") left 2px center no-repeat;padding-left:20px}
-  input:focus,select:focus,textarea:focus{outline:none;border-color:var(--gold)}
-  textarea{min-height:70px;resize:vertical}
-  ::placeholder{color:#a7abb8}
-  form .btn{width:100%;margin-top:6px}
-  .fine{font-size:.82rem;color:var(--muted);text-align:center;margin:-10px 0 0}
+/* steps · F4 horizontal, 1/2/3/4, no connector */
+.steps{padding-block:var(--space-2xl);border-top:var(--rule-strong) solid var(--color-ink)}
+.steps h2{font-size:var(--text-2xl)}
+.steps ol{list-style:none;margin:var(--space-xl) 0 0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--space-lg);counter-reset:s}
+.steps li{counter-increment:s}
+.steps li::before{content:counter(s);display:block;font:400 var(--text-2xl)/1 var(--font-display);color:var(--color-accent-ink);margin-bottom:var(--space-xs)}
+.steps b{display:block;font-weight:600}
+.steps span{color:var(--color-ink-2);font-size:var(--text-sm)}
 
-  /* faq */
-  .faq-grid{display:grid;grid-template-columns:1fr 1.6fr;gap:90px}
-  .faq-grid h2{font-size:clamp(2.2rem,4vw,3.2rem);color:var(--navy)}
-  .faq-grid .p{color:var(--muted);margin-top:18px}
-  .faq-grid .p a{color:var(--gold-dk);border-bottom:1px solid}
-  details{border-bottom:1px solid var(--line)}
-  details:first-child{border-top:1px solid var(--line)}
-  summary{cursor:pointer;list-style:none;font-family:var(--serif);font-size:1.3rem;color:var(--navy);padding:28px 0;display:flex;justify-content:space-between;align-items:center;gap:20px}
-  summary::-webkit-details-marker{display:none}
-  summary::after{content:"";width:10px;height:10px;flex:none;border-inline-end:1px solid var(--gold);border-bottom:1px solid var(--gold);transform:translateY(-3px) rotate(45deg);transition:transform .3s}
-  details[open] summary::after{transform:translateY(3px) rotate(-135deg)}
-  details p{margin:0 0 28px;color:var(--muted);max-width:640px}
+/* faq */
+.faq{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,7fr);gap:var(--space-2xl);padding-block:var(--space-3xl) var(--space-2xl)}
+.faq h2{font-size:var(--text-3xl)}
+details{border-bottom:var(--rule-hair) solid var(--color-rule)}
+details:first-of-type{border-top:var(--rule-hair) solid var(--color-rule)}
+summary{list-style:none;cursor:pointer;padding-block:var(--space-md);font-weight:600;font-size:var(--text-lg);display:flex;justify-content:space-between;gap:var(--space-md)}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font-family:var(--font-display);color:var(--color-accent-ink)}
+details[open] summary::after{content:"–"}
+details p{padding-bottom:var(--space-md);color:var(--color-ink-2);max-width:62ch}
 
-  footer{background:var(--navy-2);color:rgba(255,255,255,.55);border-top:1px solid var(--line-lt);padding:56px 0}
-  .foot{display:flex;justify-content:space-between;align-items:center;gap:30px;flex-wrap:wrap}
-  .foot .mark{color:#fff}
-  .foot nav{display:flex;gap:28px;font-size:.92rem;flex-wrap:wrap}
-  .foot nav a:hover{color:var(--gold-lt)}
-  .foot small{font-size:.82rem}
+/* contact · night block */
+.contact{background:var(--color-night);color:var(--color-on-night)}
+.contact .split{padding-block:var(--space-3xl) var(--space-2xl);align-items:center}
+.contact .stamp{width:132px;border-radius:var(--radius-photo);background:var(--color-paper)}
+.contact h2{margin-top:var(--space-lg)}
+.contact .call small{color:var(--color-on-night-2)}
+.contact .call{margin-top:var(--space-lg)}
+.contact .call:hover .num{color:var(--color-accent)}
+.wa{display:inline-flex;align-items:center;gap:var(--space-2xs);margin-top:var(--space-md);color:var(--color-on-night);text-decoration:underline;text-decoration-color:var(--color-accent);text-underline-offset:6px;text-decoration-thickness:2px}
+.wa svg{width:18px;height:18px}
+form{display:grid;gap:var(--space-md)}
+form h3{font-size:var(--text-xl)}
+label{display:grid;gap:var(--space-3xs);font-size:var(--text-sm);color:var(--color-on-night-2)}
+input,select{font:inherit;font-size:var(--text-md);color:var(--color-on-night);background:transparent;border:0;border-bottom:var(--rule-hair) solid var(--color-on-night-2);border-radius:0;padding:var(--space-2xs) 0;width:100%}
+select{appearance:none;-webkit-appearance:none}
+select option{color:var(--color-ink)}
+input:focus,select:focus{outline:none;border-bottom-color:var(--color-accent)}
+input:focus-visible,select:focus-visible{outline:3px solid var(--color-focus);outline-offset:3px}
+input[aria-invalid="true"]{border-bottom-color:var(--color-accent)}
+.err{font-size:var(--text-xs);color:var(--color-accent);min-height:1.2em}
+.contact .chip{border-color:var(--color-accent);background:var(--color-accent);color:var(--color-night);justify-self:start}
+.contact .chip:hover{background:var(--color-on-night);border-color:var(--color-on-night)}
 
-  .wa-float{position:fixed;bottom:28px;inset-inline-end:28px;z-index:60;width:56px;height:56px;border-radius:50%;background:var(--navy);border:1px solid var(--gold);color:var(--gold-lt);display:grid;place-items:center;box-shadow:0 12px 30px rgba(9,18,40,.35);transition:background .25s,color .25s}
-  .wa-float:hover{background:var(--gold);color:#fff}
-  .wa-float svg{width:26px;height:26px}
-  .mobile-bar{display:none}
+/* footer · Ft2 inline */
+footer{background:var(--color-night);color:var(--color-on-night-2);font-size:var(--text-sm);border-top:var(--rule-hair) solid var(--color-night-2)}
+footer .wrap{display:flex;flex-wrap:wrap;gap:var(--space-2xs) var(--space-md);padding-block:var(--space-lg)}
+footer a{text-decoration:none;color:var(--color-on-night)}
+footer i{font-style:normal;opacity:.5}
 
-  .rv{opacity:0;transform:translateY(30px);transition:opacity 1s cubic-bezier(.2,.7,.2,1),transform 1s cubic-bezier(.2,.7,.2,1)}
-  .rv.in{opacity:1;transform:none}
-  @media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}.hero>img{animation:none;transform:none}html{scroll-behavior:auto}}
+/* C4 sticky bottom bar · mobile only */
+.dock{display:none}
 
-  @media (max-width:1024px){
-    .nav ul{display:none}
-    .intro-grid,.svc-grid,.contact-grid,.faq-grid{grid-template-columns:1fr;gap:48px}
-    .svc-media{position:static}
-    .svc-media img{aspect-ratio:16/11}
-    .polish-grid{grid-template-columns:1fr}
-    .polish-img{min-height:420px}
-    .polish-txt{padding:90px 24px}
-    .std-grid{grid-template-columns:1fr 1fr}
-    .std-item{padding-bottom:30px}
-    .std-item:nth-child(3){border-inline-start:0;padding-inline-start:0}
-    .sec-title{flex-direction:column;align-items:start}
-    .hero-meta{display:none}
-  }
-  @media (max-width:640px){
-    body{font-size:16px}
-    .wrap{width:calc(100% - 32px)}
-    .sec{padding:84px 0}
-    .nav,header.solid .nav{height:68px}
-    .mark b{font-size:1.4rem}
-    .nav-tel span{display:none}
-    .hero-in{padding-bottom:110px}
-    .hero-cta .btn{flex:1 1 100%}
-    .facts{grid-template-columns:1fr}
-    .fact+.fact{border-inline-start:0;padding-inline-start:0;border-top:1px solid var(--line);margin-top:28px}
-    .svc-list li{grid-template-columns:40px 1fr}
-    .svc-list h3{font-size:1.45rem}
-    .pol-items div{grid-template-columns:1fr;gap:6px}
-    .aud-grid{grid-template-columns:1fr}
-    .aud-card{min-height:500px}
-    .aud-body{padding:30px 24px}
-    .std-grid{grid-template-columns:1fr}
-    .std-item,.std-item+.std-item{border-inline-start:0;padding-inline:0;border-bottom:1px solid var(--line)}
-    .contact-grid{gap:56px}
-    form{padding:36px 24px}
-    .row{grid-template-columns:1fr}
-    .wa-float{display:none}
-    footer{padding-bottom:110px}
-    .mobile-bar{display:grid;grid-template-columns:1fr 1fr;position:fixed;bottom:0;inset-inline:0;z-index:60}
-    .mobile-bar a{display:flex;align-items:center;justify-content:center;gap:10px;padding:18px;font-weight:600;letter-spacing:.06em}
-    .mobile-bar svg{width:18px;height:18px}
-    .mobile-bar .call{background:var(--gold);color:#fff}
-    .mobile-bar .wa{background:var(--navy);color:#fff}
-  }
+@media (max-width:900px){
+  .hero,.split,.split.rev,.faq{grid-template-columns:minmax(0,1fr);gap:var(--space-xl)}
+  .split.rev>.side-text{order:0}
+  .hero{padding-bottom:var(--space-2xl)}
+  .photo img{aspect-ratio:4/3}
+  .floor{max-width:440px}
+  .steps ol{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:var(--space-xl)}
+}
+@media (max-width:640px){
+  .mark span{display:none}
+  .split{padding-block:var(--space-2xl)}
+  .who{grid-template-columns:minmax(0,1fr);gap:var(--space-xl)}
+  .who>div,.who>div:first-child{padding:0;border:0}
+  .spec th{width:auto;white-space:normal}
+  .spec th,.spec td{display:block;padding:0}
+  .spec th{padding-top:var(--space-sm)}
+  .spec td{padding-bottom:var(--space-sm);border-top:0}
+  .spec tr:last-child th{border-bottom:0}
+  .mats div{grid-template-columns:minmax(0,1fr);gap:0}
+  .steps ol{grid-template-columns:minmax(0,1fr)}
+  footer{padding-bottom:64px}
+  .dock{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);position:fixed;inset-inline:0;bottom:0;z-index:var(--z-sticky);border-top:var(--rule-hair) solid var(--color-rule-strong)}
+  .dock a{display:flex;align-items:center;justify-content:center;gap:var(--space-2xs);padding:var(--space-sm);font-weight:600;text-decoration:none;white-space:nowrap}
+  .dock a:first-child{background:var(--color-ink);color:var(--color-paper)}
+  .dock a:last-child{background:var(--color-paper);color:var(--color-ink)}
+  .dock svg{width:18px;height:18px}
+}
+@media (prefers-reduced-motion:reduce){
+  .hero-text{animation:fade 150ms linear both}
+  @keyframes fade{from{opacity:0}}
+  .tile.gloss::after{animation:none;transform:translateX(0)}
+  .chip,.call .num{transition:none}
+}
 </style>
 </head>
 <body>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
-  <defs>
-    <symbol id="i-phone" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" d="M5 3.5h3.5l1.7 4.3-2.2 1.4a11 11 0 0 0 6.8 6.8l1.4-2.2 4.3 1.7V19a1.5 1.5 0 0 1-1.5 1.5A16.5 16.5 0 0 1 3.5 5 1.5 1.5 0 0 1 5 3.5z"/></symbol>
-    <symbol id="i-wa" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.15l-.3-.18-3 .78.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.25-.12-1.46-.72-1.69-.8-.23-.08-.39-.12-.55.12-.16.25-.63.8-.78.97-.14.16-.29.18-.53.06a6.7 6.7 0 0 1-3.3-2.9c-.25-.43.25-.4.71-1.33.08-.16.04-.3-.02-.42-.06-.12-.55-1.33-.76-1.82-.2-.48-.4-.41-.55-.42h-.47a.9.9 0 0 0-.65.3 2.7 2.7 0 0 0-.85 2.02 4.7 4.7 0 0 0 1 2.5 10.8 10.8 0 0 0 4.13 3.65c1.54.66 2.14.72 2.9.6.47-.07 1.46-.6 1.66-1.17.2-.58.2-1.07.15-1.17-.07-.1-.23-.16-.47-.28z"/></symbol>
-    <symbol id="i-arrow" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" d="M19 12H5m5-5l-5 5 5 5"/></symbol>
-  </defs>
+  <symbol id="i-phone" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" d="M5 3.5h3.5l1.7 4.3-2.2 1.4a11 11 0 0 0 6.8 6.8l1.4-2.2 4.3 1.7V19a1.5 1.5 0 0 1-1.5 1.5A16.5 16.5 0 0 1 3.5 5 1.5 1.5 0 0 1 5 3.5z"/></symbol>
+  <symbol id="i-wa" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.15l-.3-.18-3 .78.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.25-.12-1.46-.72-1.69-.8-.23-.08-.39-.12-.55.12-.16.25-.63.8-.78.97-.14.16-.29.18-.53.06a6.7 6.7 0 0 1-3.3-2.9c-.25-.43.25-.4.71-1.33.08-.16.04-.3-.02-.42-.06-.12-.55-1.33-.76-1.82-.2-.48-.4-.41-.55-.42h-.47a.9.9 0 0 0-.65.3 2.7 2.7 0 0 0-.85 2.02 4.7 4.7 0 0 0 1 2.5 10.8 10.8 0 0 0 4.13 3.65c1.54.66 2.14.72 2.9.6.47-.07 1.46-.6 1.66-1.17.2-.58.2-1.07.15-1.17-.07-.1-.23-.16-.47-.28z"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" d="M19 12H5m5-5l-5 5 5 5"/></symbol>
 </svg>
 
-<header id="hdr">
-  <div class="wrap nav">
-    <a href="#top" class="mark"><b>ג'מבו קלין</b><small>JUMBO CLEAN</small></a>
-    <ul>
-      <li><a href="#services">שירותים</a></li>
-      <li><a href="#polish">פוליש</a></li>
-      <li><a href="#clients">לקוחות</a></li>
-      <li><a href="#faq">שאלות</a></li>
-      <li><a href="#contact">צור קשר</a></li>
-    </ul>
-    <a class="nav-tel" href="tel:0528580800"><span>052-858-0800</span><i><svg><use href="#i-phone"/></svg></i></a>
-  </div>
+<header class="wrap bar">
+  <a class="mark" href="./"><b>ג׳מבו <i>קלין</i></b><span>ניקיון · פוליש · שיפוצים</span></a>
+  <a class="chip" href="tel:0528580800"><svg><use href="#i-phone"/></svg><span class="num">052-858-0800</span></a>
 </header>
 
-<main id="top">
-  <section class="hero">
-    <img src="assets/hero-1600.webp" srcset="assets/hero-640.webp 640w, assets/hero-1024.webp 1024w, assets/hero-1600.webp 1600w, assets/hero-2200.webp 2200w" sizes="100vw" fetchpriority="high" decoding="async" width="2200" height="1228" alt="סלון דירה חדשה עם רצפת שיש מבריקה">
-    <div class="wrap">
-      <div class="hero-in">
-        <div class="kicker lt">ניקיון · פוליש · חידוש רצפות</div>
-        <h1>רצפה שמחזירה <em>את האור</em> לבית.</h1>
-        <p>ניקיון לפני אכלוס, פוליש קריסטל וחידוש רצפות לדירות, בתים ומשרדים - בסטנדרט שרואים בהשתקפות.</p>
-        <div class="hero-cta">
-          <a class="btn btn-gold" href="#contact">לתיאום הצעת מחיר <svg><use href="#i-arrow"/></svg></a>
-          <a class="btn btn-line" href="tel:0528580800"><svg><use href="#i-phone"/></svg><span>052-858-0800</span></a>
-        </div>
+<main>
+  <section class="wrap hero">
+    <div class="hero-text">
+      <h1>דירה נקייה.<br><mark>רצפה שמבריקה.</mark></h1>
+      <p class="lede">ניקיון דירות ומשרדים לפני אכלוס, פוליש קריסטל, פוליש לגרניט פורצלן וחידוש רצפות – ללקוחות פרטיים ולעסקים.</p>
+      <div class="hero-cta">
+        <a class="call" href="tel:0528580800"><small>להצעת מחיר, התקשרו</small><span class="num">052-858-0800</span></a>
+        <a class="chip" href="https://wa.me/972528580800" target="_blank" rel="noopener"><svg><use href="#i-wa"/></svg>שלחו הודעה בוואטסאפ</a>
       </div>
-      <div class="hero-meta"><span>פרטיים</span><span>עסקיים</span><span>מבני מסחר</span></div>
+    </div>
+    <figure class="photo">
+      <div class="ph"><img src="assets/machine-800.webp" srcset="assets/machine-480.webp 480w, assets/machine-800.webp 800w, assets/machine-1100.webp 1100w" sizes="(max-width:900px) 100vw, 440px" width="1100" height="1365" fetchpriority="high" alt="מכונת פוליש מלטשת רצפת גרניט פורצלן"></div>
+      <figcaption>ליטוש גרניט פורצלן: החלק שכבר עבר ליטוש מחזיר אור.</figcaption>
+    </figure>
+  </section>
+
+  <div class="band">
+    <section class="wrap split" id="move-in">
+      <div class="side-text">
+        <h2>ניקיון לפני אכלוס</h2>
+        <p>דירה חדשה מקבלן או משרד אחרי שיפוץ נשארים עם אבק בנייה, כתמי צבע ושאריות דבק בכל פינה. אנחנו מנקים את הנכס מהתקרה עד הרצפה, כך שאפשר להכניס רהיטים באותו יום.</p>
+        <a class="chip" href="#contact">לתיאום ניקיון <svg><use href="#i-arrow"/></svg></a>
+      </div>
+      <table class="spec">
+        <caption>מה הניקיון כולל</caption>
+        <tr><th scope="row">מטבח</th><td>ארונות מבפנים ומבחוץ, משטחים, כיור וברזים</td></tr>
+        <tr><th scope="row">חדרי רחצה</th><td>קירות וריצוף, כלים סניטריים, מקלחון ואביזרים</td></tr>
+        <tr><th scope="row">חלונות</th><td>זכוכיות, מסגרות, מסילות ותריסים</td></tr>
+        <tr><th scope="row">רצפות</th><td>הסרת שאריות צבע, טיח ודבק, ושטיפה יסודית</td></tr>
+        <tr><th scope="row">ארונות קיר</th><td>מדפים, מגירות ודלתות</td></tr>
+        <tr><th scope="row">בכל החדרים</th><td>אבק מנקודות גבוהות, שקעים, מפסקים, דלתות ומשקופים</td></tr>
+      </table>
+    </section>
+  </div>
+
+  <section class="wrap split rev" id="polish">
+    <div class="side-text">
+      <h2>פוליש וחידוש רצפות</h2>
+      <p>רצפה עמומה, שרוטה או מוכתמת לא תמיד צריכה החלפה. כל חומר מקבל טיפול משלו:</p>
+      <dl class="mats">
+        <div><dt>שיש ואבן טבעית</dt><dd>פוליש קריסטל – ברק עמוק ושכבת הגנה</dd></div>
+        <div><dt>גרניט פורצלן</dt><dd>ליטוש וחומרים ייעודיים להסרת עמעום וכתמים</dd></div>
+        <div><dt>רצפה שחוקה</dt><dd>חידוש בשלבים, בלי לפרק ובלי להחליף</dd></div>
+      </dl>
+      <a class="chip" href="#contact">לבדיקת הרצפה <svg><use href="#i-arrow"/></svg></a>
+    </div>
+    <figure class="floor" aria-label="איור: רצפה שחציה לפני ליטוש וחציה אחרי">
+      <div class="tiles">
+        <i class="tile dull"></i><i class="tile dull"></i><i class="tile gloss"></i><i class="tile gloss"></i>
+        <i class="tile dull"></i><i class="tile dull"></i><i class="tile gloss"></i><i class="tile gloss"></i>
+        <i class="tile dull"></i><i class="tile dull"></i><i class="tile gloss"></i><i class="tile gloss"></i>
+        <i class="tile dull"></i><i class="tile dull"></i><i class="tile gloss"></i><i class="tile gloss"></i>
+      </div>
+      <figcaption><span>לפני</span><span>אחרי</span></figcaption>
+    </figure>
+  </section>
+
+  <section class="wrap who">
+    <div>
+      <h2>לבית</h2>
+      <ul>
+        <li>ניקיון דירה חדשה לפני כניסה</li>
+        <li>ניקיון אחרי שיפוץ או לפני מעבר</li>
+        <li>פוליש וחידוש רצפות שיש וגרניט פורצלן</li>
+        <li>ניקיון כללי ויסודי לכל הבית</li>
+      </ul>
+    </div>
+    <div>
+      <h2>לעסק</h2>
+      <ul>
+        <li>ניקיון משרדים לפני אכלוס או אחרי שיפוץ</li>
+        <li>פוליש רצפות בלובי, בחנויות ובמבני מסחר</li>
+        <li>עבודה בשעות שלא מפריעות לפעילות</li>
+        <li>חשבונית מסודרת והתקשרות קבועה</li>
+      </ul>
     </div>
   </section>
 
-  <section class="sec intro">
-    <div class="wrap intro-grid">
-      <div class="rv">
-        <div class="kicker">ג'מבו קלין</div>
-        <h2>הפרטים הקטנים הם כל ההבדל.</h2>
-      </div>
-      <div class="rv">
-        <p class="lead">אנחנו מכינים נכסים לרגע הכניסה: דירה חדשה מקבלן, משרד אחרי שיפוץ, רצפת שיש שאיבדה את הברק. עובדים עם <em>ציוד ליטוש מקצועי</em>, חומרים שמותאמים לכל סוג אבן, וצוות שלא עוזב עד שהכול מושלם.</p>
-        <div class="facts">
-          <div class="fact"><b>A–Z</b><span>מניקיון יסודי ועד ליטוש</span></div>
-          <div class="fact"><b>2</b><span>מסלולים: פרטי ועסקי</span></div>
-          <div class="fact"><b>0</b><span>הפתעות במחיר הסופי</span></div>
-        </div>
-      </div>
-    </div>
+  <section class="wrap steps">
+    <h2>איך מתחילים</h2>
+    <ol>
+      <li><b>פונים אלינו</b><span>בטלפון, בוואטסאפ או בטופס למטה</span></li>
+      <li><b>מקבלים הצעת מחיר</b><span>לפי גודל הנכס, מצבו וסוג הרצפה</span></li>
+      <li><b>קובעים מועד</b><span>ביום ובשעה שנוחים לכם</span></li>
+      <li><b>נכנסים לנכס מוכן</b><span>עוברים יחד על העבודה בסיום</span></li>
+    </ol>
   </section>
 
-  <section class="sec services" id="services">
-    <div class="wrap svc-grid">
-      <div class="svc-media rv">
-        <figure><img src="assets/machine-800.webp" srcset="assets/machine-480.webp 480w, assets/machine-800.webp 800w, assets/machine-1100.webp 1100w" sizes="(max-width:1024px) 100vw, 520px" decoding="async" style="background:url(data:image/webp;base64,UklGRooAAABXRUJQVlA4IH4AAABwBQCdASoYAB4APu1qqk+ppiOiKA1RMB2JZwDDrA9qYKwW07q01RBtU6hcV+JDjJ5bkvmcAP6+Y7LdfqjTEUNecvfSULg0uvAdPURp8a7YwFr1VhSoeG7m3zfHRbxACULGRRHKcSSruOUwY3UA3GeMwYnVhQZpx+o6KRQAAAA=) center/cover" alt="מכונת פוליש מלטשת רצפת גרניט פורצלן" loading="lazy"></figure>
-        <figcaption>ליטוש רצפת גרניט פורצלן - ההבדל נראה מיד.</figcaption>
-      </div>
-      <div>
-        <div class="svc-head rv">
-          <div class="kicker">השירותים</div>
-          <h2>מהאבק הראשון ועד הברק האחרון.</h2>
-          <p>כל עבודה מתחילה בבדיקה של הנכס וסוג הרצפה, ומסתיימת רק כשהוא מוכן לכניסה.</p>
-        </div>
-        <ul class="svc-list">
-          <li class="rv"><span class="n">01</span><div><h3>ניקיון לפני אכלוס</h3><p>דירות ומשרדים חדשים או אחרי שיפוץ: הסרת שאריות בנייה, צבע, טיח ודבק, חלונות ומסגרות, ארונות, מטבח וחדרי רחצה.</p></div></li>
-          <li class="rv"><span class="n">02</span><div><h3>פוליש קריסטל</h3><p>קריסטליזציה לשיש ולאבן טבעית - מחזירה עומק, ברק ושכבת הגנה עמידה.</p></div></li>
-          <li class="rv"><span class="n">03</span><div><h3>פוליש לגרניט פורצלן</h3><p>ליטוש ייעודי שמסיר עמעום וכתמים ומחזיר לאריח את המראה המבריק של היום הראשון.</p></div></li>
-          <li class="rv"><span class="n">04</span><div><h3>חידוש רצפות</h3><p>רצפה שחוקה או שרוטה מקבלת חיים חדשים - בלי לפרק, בלי להחליף, בעלות נמוכה בהרבה.</p></div></li>
-          <li class="rv"><span class="n">05</span><div><h3>ניקיון כללי לבית</h3><p>ניקיון יסודי של כל הבית, מהתקרה ועד הרצפה: משטחים, חלונות, תריסים וארונות.</p></div></li>
-        </ul>
-        <p class="svc-note rv">בנוסף: <b>שיפוצים</b> ו<b>אינסטלציה</b> - כתובת אחת לכל הנכס.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="polish" id="polish">
-    <div class="polish-grid">
-      <div class="polish-img"><img src="assets/marble-1000.webp" srcset="assets/marble-600.webp 600w, assets/marble-1000.webp 1000w, assets/marble-1400.webp 1400w" sizes="(max-width:1024px) 100vw, 55vw" decoding="async" style="background:url(data:image/webp;base64,UklGRnAAAABXRUJQVlA4IGQAAABQBQCdASoYAB4APuViqE2pJaQiN/VYASAciWMAnQA+qx8LeXG/3BcjWkxl2r9QP1K3dcAA+I3+UySn9UNU4Y1PJ1omCdkTCu1V/to+ngRCqM00jbkGK1zWzyAd3OMPlB9QrtAA) center/cover" alt="משטח שיש מלוטש ומבריק" loading="lazy"></div>
-      <div class="polish-txt">
-        <div class="kicker lt rv">ההתמחות שלנו</div>
-        <h2 class="rv">פוליש שהופך רצפה <em>למראה.</em></h2>
-        <p class="p rv">כל אבן מגיבה אחרת לליטוש. לכן אנחנו בוחרים את השיטה לפי החומר - ולא להפך.</p>
-        <div class="pol-items">
-          <div class="rv"><h3>שיש ואבן טבעית</h3><p>פוליש קריסטל שסוגר נקבוביות ומעניק ברק עמוק ומוגן.</p></div>
-          <div class="rv"><h3>גרניט פורצלן</h3><p>ליטוש וחומרים ייעודיים לאריח קשה, להסרת עמעום וכתמים.</p></div>
-          <div class="rv"><h3>חידוש מלא</h3><p>לרצפות שחוקות: ליטוש בשלבים עד לגימור אחיד ומבריק.</p></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="sec" id="clients">
-    <div class="wrap">
-      <div class="sec-title rv">
-        <div><div class="kicker">למי אנחנו עובדים</div><h2>לקוחות פרטיים ולקוחות עסקיים.</h2></div>
-        <p>אותו סטנדרט, שני מסלולי עבודה - מותאמים ללוח הזמנים ולצרכים שלכם.</p>
-      </div>
-      <div class="aud-grid">
-        <article class="aud-card rv">
-          <img src="assets/home-1000.webp" srcset="assets/home-600.webp 600w, assets/home-1000.webp 1000w, assets/home-1400.webp 1400w" sizes="(max-width:640px) 100vw, 50vw" decoding="async" style="background:url(data:image/webp;base64,UklGRmwAAABXRUJQVlA4IGAAAACwBACdASoYAB4APuFcqU2opSQiMAwBEBwJYwCxH5ODTq2Uwg8mJcWA/2t8wyb0AP6up1d6duNho+Bm8V5/pJWtk1p4u6vuDXbSvavJVR92HYr9Et3NP6VYEzU28RjIgAA=) center/cover" alt="" loading="lazy">
-          <div class="aud-body">
-            <small>PRIVATE</small>
-            <h3>לקוחות פרטיים</h3>
-            <ul>
-              <li>ניקיון דירה חדשה מקבלן לפני כניסה</li>
-              <li>ניקיון אחרי שיפוץ או לפני מעבר</li>
-              <li>פוליש וחידוש רצפות שיש וגרניט פורצלן</li>
-              <li>ניקיון כללי ויסודי לכל הבית</li>
-            </ul>
-          </div>
-        </article>
-        <article class="aud-card rv">
-          <img src="assets/lobby-1000.webp" srcset="assets/lobby-600.webp 600w, assets/lobby-1000.webp 1000w, assets/lobby-1400.webp 1400w" sizes="(max-width:640px) 100vw, 50vw" decoding="async" style="background:url(data:image/webp;base64,UklGRqQAAABXRUJQVlA4IJgAAAAwBQCdASoYAB4APu1kqk2ppaQiMAgBMB2JaACdMzLulEG8F9SEj97imXqhXaqk9lpLNgD+0F2g2LILSUIn9lZRc5pE7LV6z3KhTFThfpBnYt8vV+7GFTsB1ZeOus+lmLcbT8XzkkxmBvgfVnYbb6Pn9YnHoBTqormiHIZzCsg3HdQBzy4oDbRqqr7DaGhCZ3gPp1B42d9AAA==) center/cover" alt="" loading="lazy">
-          <div class="aud-body">
-            <small>BUSINESS</small>
-            <h3>לקוחות עסקיים</h3>
-            <ul>
-              <li>ניקיון משרדים לפני אכלוס או אחרי שיפוץ</li>
-              <li>פוליש רצפות בלובי, חנויות ומבני מסחר</li>
-              <li>עבודה בשעות שלא מפריעות לפעילות</li>
-              <li>חשבונית מסודרת והתקשרות קבועה</li>
-            </ul>
-          </div>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <section class="sec std">
-    <div class="wrap">
-      <div class="sec-title rv">
-        <div><div class="kicker">הסטנדרט שלנו</div><h2>איך אנחנו עובדים.</h2></div>
-      </div>
-      <div class="std-grid">
-        <div class="std-item rv"><span class="r">I</span><h3>בדיקה והצעה</h3><p>בודקים את הנכס וסוג הרצפה, ונותנים הצעת מחיר ברורה.</p></div>
-        <div class="std-item rv"><span class="r">II</span><h3>תיאום מדויק</h3><p>קובעים מועד שמתאים לכם - ומגיעים בדיוק בזמן.</p></div>
-        <div class="std-item rv"><span class="r">III</span><h3>ביצוע מקצועי</h3><p>צוות מנוסה, מכונות ליטוש וחומרים מותאמים לכל משטח.</p></div>
-        <div class="std-item rv"><span class="r">IV</span><h3>מסירה</h3><p>עוברים יחד על הנכס. מסיימים רק כשאתם מרוצים.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="sec contact" id="contact">
-    <div class="wrap contact-grid">
-      <div class="rv">
-        <div class="kicker lt">צור קשר</div>
-        <h2>בואו נחזיר <em>את הברק.</em></h2>
-        <p class="p">השאירו פרטים ונחזור אליכם עם הצעת מחיר - או דברו איתנו ישירות.</p>
-        <div class="tel-label">טלפון</div>
-        <a class="tel-big" href="tel:0528580800">052-858-0800</a>
-        <a class="wa-link" href="https://wa.me/972528580800" target="_blank" rel="noopener"><svg><use href="#i-wa"/></svg>או כתבו לנו בוואטסאפ</a>
-      </div>
-      <form id="lead" class="rv" novalidate>
-        <h3>בקשה להצעת מחיר</h3>
-        <p class="sub">ללא עלות וללא התחייבות.</p>
-        <div class="row">
-          <label>שם מלא<input name="name" required autocomplete="name"></label>
-          <label>טלפון<input name="phone" type="tel" required autocomplete="tel" inputmode="tel"></label>
-        </div>
-        <div class="row">
-          <label>שירות
-            <select name="service">
-              <option>ניקיון לפני אכלוס</option>
-              <option>פוליש קריסטל</option>
-              <option>פוליש לגרניט פורצלן</option>
-              <option>חידוש רצפה</option>
-              <option>ניקיון כללי לבית</option>
-              <option>ניקיון משרד / מבנה מסחרי</option>
-              <option>אחר</option>
-            </select>
-          </label>
-          <label>סוג לקוח
-            <select name="type"><option>פרטי</option><option>עסקי</option></select>
-          </label>
-        </div>
-        <label>עיר / אזור<input name="city"></label>
-        <label>פרטים נוספים<textarea name="notes" placeholder="גודל הנכס, סוג הרצפה, מועד רצוי"></textarea></label>
-        <button class="btn btn-navy" type="submit">שליחת הבקשה <svg><use href="#i-arrow"/></svg></button>
-        <p class="fine">הבקשה נשלחת ישירות בוואטסאפ.</p>
-      </form>
-    </div>
-  </section>
-
-  <section class="sec" id="faq">
-    <div class="wrap faq-grid">
-      <div class="rv">
-        <div class="kicker">שאלות נפוצות</div>
-        <h2>לפני שמתחילים.</h2>
-        <p class="p">לא מצאתם תשובה? <a href="tel:0528580800">התקשרו אלינו</a>.</p>
-      </div>
-      <div class="rv">
-        <details><summary>מה כולל ניקיון לפני אכלוס?</summary><p>ניקיון יסודי של כל הנכס: הסרת שאריות בנייה, צבע, טיח ודבק, ניקוי חלונות ומסגרות, תריסים, ארונות מבפנים ומבחוץ, מטבח, חדרי רחצה ורצפות - כך שהנכס מוכן לכניסה.</p></details>
-        <details><summary>מה ההבדל בין פוליש קריסטל לפוליש גרניט פורצלן?</summary><p>פוליש קריסטל מיועד לשיש ולאבן טבעית ומעניק ברק עמוק ושכבת הגנה. גרניט פורצלן קשה יותר ומקבל ליטוש וחומרים ייעודיים. נתאים את הטיפול לרצפה שלכם.</p></details>
-        <details><summary>אפשר לחדש רצפה בלי להחליף אותה?</summary><p>ברוב המקרים כן. ליטוש וחידוש מקצועי מסירים שריטות, כתמים ועמעום, ומחזירים לרצפה מראה חדש - בעלות נמוכה בהרבה מהחלפה.</p></details>
-        <details><summary>אתם עובדים גם עם עסקים?</summary><p>כן. משרדים, חנויות ומבני מסחר - בעבודה חד פעמית או בהתקשרות קבועה, ובשעות שלא מפריעות לפעילות.</p></details>
-        <details><summary>איך נקבע המחיר?</summary><p>לפי גודל הנכס, מצבו וסוג השירות. אחרי בדיקה קצרה תקבלו הצעת מחיר מסודרת, בלי הפתעות.</p></details>
-      </div>
+  <section class="wrap faq" id="faq">
+    <h2>שאלות שחוזרות</h2>
+    <div>
+      <details><summary>מה ההבדל בין פוליש קריסטל לפוליש גרניט פורצלן?</summary><p>פוליש קריסטל מיועד לשיש ולאבן טבעית: הוא סוגר נקבוביות ומעניק ברק עמוק. גרניט פורצלן קשה יותר ומקבל ליטוש וחומרים אחרים. נגיד לכם מה מתאים אחרי שנראה את הרצפה.</p></details>
+      <details><summary>אפשר לחדש רצפה בלי להחליף אותה?</summary><p>ברוב המקרים כן. ליטוש מקצועי מסיר שריטות, כתמים ועמעום, בעלות נמוכה בהרבה מהחלפה.</p></details>
+      <details><summary>כמה זה עולה?</summary><p>תלוי בגודל הנכס, במצבו ובסוג השירות. התקשרו או שלחו תמונות בוואטסאפ ותקבלו הצעת מחיר.</p></details>
+      <details><summary>אתם עובדים גם עם עסקים?</summary><p>כן – משרדים, חנויות ומבני מסחר, בעבודה חד פעמית או בהתקשרות קבועה.</p></details>
     </div>
   </section>
 </main>
 
+<section class="contact" id="contact">
+  <div class="wrap split rev">
+    <div class="side-text">
+      <img class="stamp" src="assets/logo-240.webp" srcset="assets/logo-240.webp 1x, assets/logo-480.webp 2x" width="132" height="132" loading="lazy" alt="הלוגו של ג׳מבו קלין">
+      <h2>נשמח לראות את הנכס</h2>
+      <a class="call" href="tel:0528580800"><small>טלפון</small><span class="num">052-858-0800</span></a>
+      <a class="wa" href="https://wa.me/972528580800" target="_blank" rel="noopener"><svg><use href="#i-wa"/></svg>או שלחו תמונות בוואטסאפ</a>
+    </div>
+    <form id="lead" novalidate>
+      <h3>השאירו פרטים ונחזור אליכם</h3>
+      <label>שם<input name="name" autocomplete="name" required></label>
+      <label>טלפון<input name="phone" type="tel" inputmode="tel" autocomplete="tel" required></label>
+      <label>מה צריך?
+        <select name="service">
+          <option>ניקיון לפני אכלוס</option>
+          <option>פוליש קריסטל</option>
+          <option>פוליש לגרניט פורצלן</option>
+          <option>חידוש רצפה</option>
+          <option>ניקיון כללי לבית</option>
+          <option>ניקיון משרד או מבנה מסחרי</option>
+          <option>משהו אחר</option>
+        </select>
+      </label>
+      <p class="err" id="err" role="alert"></p>
+      <button class="chip" type="submit">שליחה בוואטסאפ <svg><use href="#i-arrow"/></svg></button>
+    </form>
+  </div>
+</section>
+
 <footer>
-  <div class="wrap foot">
-    <a href="#top" class="mark"><b>ג'מבו קלין</b><small>JUMBO CLEAN</small></a>
-    <nav><a href="#services">שירותים</a><a href="#polish">פוליש</a><a href="#clients">לקוחות</a><a href="tel:0528580800" style="direction:ltr">052-858-0800</a></nav>
-    <small>© <span id="y"></span> ג'מבו קלין. כל הזכויות שמורות.</small>
+  <div class="wrap">
+    <span>ג׳מבו קלין</span><i>·</i>
+    <a href="tel:0528580800" class="num">052-858-0800</a><i>·</i>
+    <span>© <span id="y"></span></span>
   </div>
 </footer>
 
-<a class="wa-float" href="https://wa.me/972528580800" target="_blank" rel="noopener" aria-label="וואטסאפ"><svg><use href="#i-wa"/></svg></a>
-<div class="mobile-bar">
-  <a class="call" href="tel:0528580800"><svg><use href="#i-phone"/></svg>התקשרו</a>
-  <a class="wa" href="https://wa.me/972528580800" target="_blank" rel="noopener"><svg><use href="#i-wa"/></svg>וואטסאפ</a>
-</div>
+<nav class="dock" aria-label="יצירת קשר">
+  <a href="tel:0528580800"><svg><use href="#i-phone"/></svg>התקשרו</a>
+  <a href="https://wa.me/972528580800" target="_blank" rel="noopener"><svg><use href="#i-wa"/></svg>וואטסאפ</a>
+</nav>
 
 <script>
   document.getElementById('y').textContent = new Date().getFullYear();
 
-  const hdr = document.getElementById('hdr');
-  const onScroll = () => hdr.classList.toggle('solid', scrollY > 40);
-  addEventListener('scroll', onScroll, { passive: true }); onScroll();
-
-  const io = new IntersectionObserver(es => es.forEach(e => {
-    if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
-  }), { threshold: .12 });
-  document.querySelectorAll('.rv').forEach(el => io.observe(el));
-
   document.getElementById('lead').addEventListener('submit', e => {
     e.preventDefault();
-    const f = e.target, d = new FormData(f);
-    const name = d.get('name').trim(), phone = d.get('phone').trim();
-    if (!name || phone.replace(/\D/g, '').length < 9) {
-      (name ? f.phone : f.name).focus();
-      alert('נא למלא שם ומספר טלפון תקין');
-      return;
-    }
-    const lines = [
-      'היי ג\'מבו קלין, אשמח לקבל הצעת מחיר',
-      'שם: ' + name,
-      'טלפון: ' + phone,
-      'שירות: ' + d.get('service'),
-      'לקוח: ' + d.get('type'),
-    ];
-    if (d.get('city').trim()) lines.push('אזור: ' + d.get('city').trim());
-    if (d.get('notes').trim()) lines.push('פרטים: ' + d.get('notes').trim());
-    window.open('https://wa.me/972528580800?text=' + encodeURIComponent(lines.join('\n')), '_blank');
+    const f = e.target, err = document.getElementById('err');
+    const name = f.name.value.trim(), phone = f.phone.value.trim();
+    f.name.removeAttribute('aria-invalid'); f.phone.removeAttribute('aria-invalid');
+    if (!name) { f.name.setAttribute('aria-invalid', 'true'); err.textContent = 'חסר שם.'; f.name.focus(); return; }
+    if (phone.replace(/\D/g, '').length < 9) { f.phone.setAttribute('aria-invalid', 'true'); err.textContent = 'מספר הטלפון קצר מדי.'; f.phone.focus(); return; }
+    err.textContent = '';
+    const text = ['היי ג׳מבו קלין, אשמח להצעת מחיר', 'שם: ' + name, 'טלפון: ' + phone, 'שירות: ' + f.service.value].join('\n');
+    window.open('https://wa.me/972528580800?text=' + encodeURIComponent(text), '_blank');
   });
 </script>
 </body>
