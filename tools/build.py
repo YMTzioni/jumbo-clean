@@ -74,6 +74,7 @@ def head(title, desc, url, pre, preload, ld):
 <meta property="og:image" content="{SITE}/assets/og.jpg">
 <meta property="og:url" content="{url}">
 <meta property="og:type" content="website">
+<meta property="og:site_name" content="ג'מבו קלין Jumbo Clean">
 <meta property="og:locale" content="he_IL">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="{FAVICON}">
@@ -193,7 +194,7 @@ def footer(pre):
       <div><h4>שיפוצים</h4><ul>{col("reno")}</ul></div>
       <div><h4>ניקיון ופוליש</h4><ul>{col("clean")}</ul></div>
     </div>
-    <small>© {date.today().year} ג׳מבו קלין. שיפוצים, ניקיון ופוליש בכל הארץ. התמונות באתר להמחשה</small>
+    <small>© {date.today().year} ג׳מבו קלין (ג'מבו קלין, גמבו קלין, Jumbo Clean). שיפוצים, ניקיון ופוליש בכל הארץ. התמונות באתר להמחשה</small>
   </div>
 </footer>
 <nav class="dock" aria-label="יצירת קשר מהירה">
@@ -216,7 +217,7 @@ def regions_band():
 </section>"""
 
 BUSINESS = {
-  "@type": "HomeAndConstructionBusiness", "@id": f"{SITE}/#business", "name": "ג׳מבו קלין", "alternateName": "Jumbo Clean",
+  "@type": "HomeAndConstructionBusiness", "@id": f"{SITE}/#business", "name": "ג׳מבו קלין", "alternateName": ["Jumbo Clean", "ג'מבו קלין", "גמבו קלין", "ג'מבו קלין שיפוצים", "ג׳מבו קלין שיפוצים"],
   "url": f"{SITE}/", "telephone": PHONE_INTL, "image": f"{SITE}/assets/og.jpg", "logo": f"{SITE}/assets/logo-480.webp",
   "description": "שיפוצים לדירות ולמשרדים: צבע, בנייה וטיח ואינסטלציה, וגם ניקיון לפני אכלוס, פוליש קריסטל, פוליש לגרניט פורצלן וחידוש רצפות. בכל הארץ.",
   "areaServed": {"@type": "Country", "name": "ישראל"}, "knowsLanguage": "he",
@@ -253,8 +254,8 @@ def home():
     <path class="spark" style="animation-delay:-1.4s" d="M410 30 Q410 44 424 44 Q410 44 410 58 Q410 44 396 44 Q410 44 410 30Z"/>
   </svg>
 </figure>"""
-    body = f"""{head("ג׳מבו קלין | שיפוצים, ניקיון לפני אכלוס ופוליש בכל הארץ",
-                "ג׳מבו קלין: שיפוצים לדירות ולמשרדים: צבע, בנייה, טיח ואינסטלציה. ואחרי השיפוץ, ניקיון לפני אכלוס, פוליש קריסטל, פוליש לפורצלן וחידוש רצפות. בכל הארץ. 052-858-0800",
+    body = f"""{head("ג'מבו קלין Jumbo Clean | שיפוצים, ניקיון לפני אכלוס ופוליש בכל הארץ",
+                "ג'מבו קלין (גמבו קלין, Jumbo Clean): שיפוצים לדירות ולמשרדים: צבע, בנייה, טיח ואינסטלציה. ואחרי השיפוץ, ניקיון לפני אכלוס, פוליש קריסטל, פוליש לפורצלן וחידוש רצפות. בכל הארץ. 052-858-0800",
                 f"{SITE}/", pre, "home-done", ld)}
 {nav(pre)}
 <main id="main">
