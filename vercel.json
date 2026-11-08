@@ -1,0 +1,5 @@
+{
+  "redirects": [
+    { "source": "/:path*", "has": [{ "type": "host", "value": "www.jumbo-clean.co.il" }], "destination": "https://jumbo-clean.co.il/:path*", "permanent": true }
+  ]
+}
