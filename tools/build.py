@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """Builds index.html, one page per service, sitemap.xml and responsive images.
 Run:  python tools/build.py        (from the site root)"""
-import json, os, sys, html
+import json, os, re, sys, html
 from datetime import date
 sys.path.insert(0, os.path.dirname(__file__))
 from content import *  # noqa
@@ -56,6 +56,16 @@ ICONS = """<svg width="0" height="0" style="position:absolute" aria-hidden="true
 
 FAVICON = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Cpath d='M4 30 L20 12 L36 30' fill='none' stroke='%231b2552' stroke-width='6'/%3E%3Cpath d='M12 31 L20 22 L28 31' fill='none' stroke='%23c9962e' stroke-width='3.5'/%3E%3Cpath d='M33 2 Q33 9 40 9 Q33 9 33 16 Q33 9 26 9 Q33 9 33 2Z' fill='%23c9962e'/%3E%3C/svg%3E"
 
+A11Y_BOOT = "(function(){try{var p=JSON.parse(localStorage.getItem('jc_a11y_v1'));if(!p||p.v!==1)return;var c=document.documentElement.classList;[115,130,150].forEach(function(t){c.toggle('a11y-text-'+t,p.text===t)});[16,20].forEach(function(l){c.toggle('a11y-lines-'+l,p.lines===l)});['high','invert','mono'].forEach(function(k){c.toggle('a11y-contrast-'+k,p.contrast===k)});['links','heads','font','cursor','motion'].forEach(function(k){c.toggle('a11y-'+k,!!p[k])})}catch(e){}})()"
+
+A11Y_PANEL = """<button class="a11y-trigger" id="a11y-trigger" type="button" aria-expanded="false" aria-controls="a11y-panel" aria-keyshortcuts="Alt+A"><svg aria-hidden="true" viewBox="0 0 24 24"><circle cx="12" cy="4.2" r="2.2" fill="currentColor"/><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="M4.5 8.5l7.5 1.5 7.5-1.5M12 10v5m0 0l-3.5 6.5M12 15l3.5 6.5"/></svg><span class="sr">תפריט נגישות (Alt+A)</span></button>
+<div class="a11y-panel" id="a11y-panel" role="dialog" aria-modal="true" aria-labelledby="a11y-title" hidden>
+  <div class="a11y-head"><p id="a11y-title">התאמות נגישות</p><button class="icon-btn" type="button" data-a11y-close><svg aria-hidden="true"><use href="#i-x"/></svg><span class="sr">סגירת תפריט נגישות</span></button></div>
+  <div class="a11y-grid"></div>
+  <div class="a11y-foot"><button class="btn btn-line" type="button" data-a11y-reset>איפוס הגדרות</button><a class="link" href="__PRE__hatzharat-negishut/">הצהרת נגישות</a></div>
+</div>
+<div class="sr" id="a11y-live" role="status" aria-live="polite"></div>"""
+
 def esc(s):
     return html.escape(s, quote=True)
 
@@ -78,16 +88,16 @@ def head(title, desc, url, pre, preload, ld):
 <meta property="og:locale" content="he_IL">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="{FAVICON}">
-<link rel="preload" as="image" href="{pre}assets/img/{preload}-1200.webp" imagesrcset="{pre}assets/img/{preload}-640.webp 640w, {pre}assets/img/{preload}-1200.webp 1200w, {pre}assets/img/{preload}-1800.webp 1800w" imagesizes="(max-width: 900px) 100vw, 50vw" fetchpriority="high">
+{"" if not preload else f'''<link rel="preload" as="image" href="{pre}assets/img/{preload}-1200.webp" imagesrcset="{pre}assets/img/{preload}-640.webp 640w, {pre}assets/img/{preload}-1200.webp 1200w, {pre}assets/img/{preload}-1800.webp 1800w" imagesizes="(max-width: 900px) 100vw, 50vw" fetchpriority="high">'''}
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Karantina:wght@400;700&family=Miriam+Libre:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="{pre}site.css">
-<script>document.documentElement.classList.add('js')</script>
+<script>document.documentElement.classList.add('js');{A11Y_BOOT}</script>
 <script type="application/ld+json">{json.dumps(ld, ensure_ascii=False)}</script>
 </head>
 <body>
-<a class="skip" href="#main">דילוג לתוכן</a>
+<a class="skip" href="#main">דילוג לתוכן הראשי</a>
 {ICONS}"""
 
 CUR = ' aria-current="page"'
@@ -97,7 +107,7 @@ def nav(pre, current=None):
         items = "".join(
             f'<a href="{pre}{s["slug"]}/"{CUR if s["slug"]==current else ""}><b>{s["name"]}</b><span>{s["menu"]}</span></a>'
             for s in SERVICES if s["group"] == group)
-        return f'<div class="mega-col"><h4>{label}</h4>{items}</div>'
+        return f'<div class="mega-col"><p class="menu-h">{label}</p>{items}</div>'
     sheet_links = "".join(f'<a href="{pre}{s["slug"]}/">{s["name"]}</a>' for s in SERVICES)
     home = "./" if pre == "" else pre
     return f"""<header class="nav">
@@ -115,15 +125,16 @@ def nav(pre, current=None):
     <a class="btn btn-gold btn-call" href="tel:0528580800" aria-label="התקשרו {PHONE}"><svg aria-hidden="true"><use href="#i-phone"/></svg><span class="num">{PHONE}</span></a>
   </div>
 </header>
-<div class="sheet" id="sheet" role="dialog" aria-label="תפריט">
+<div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-label="תפריט" hidden>
   <button class="icon-btn sheet-close" type="button" data-sheet><svg aria-hidden="true"><use href="#i-x"/></svg><span class="sr">סגירה</span></button>
-  <h4>שירותים</h4>{sheet_links}
-  <h4>עוד</h4><a href="{home}#process">איך עובדים</a><a href="{home}#faq">שאלות</a><a href="#contact">צור קשר</a>
+  <p class="menu-h">שירותים</p>{sheet_links}
+  <p class="menu-h">עוד</p><a href="{home}#process">איך עובדים</a><a href="{home}#faq">שאלות</a><a href="#contact">צור קשר</a>
 </div>"""
 
 def marquee(pre):
     items = "".join(f'<a href="{pre}{s["slug"]}/">{s["name"]}<svg aria-hidden="true"><use href="#i-spark"/></svg></a>' for s in SERVICES)
-    return f"""<div class="marquee" aria-label="השירותים שלנו">
+    return f"""<div class="marquee" role="region" aria-label="השירותים שלנו">
+  <button class="marquee-pause" type="button" aria-pressed="false"><span class="sr">עצירת הפס הנע</span><svg class="i-pause" aria-hidden="true" viewBox="0 0 24 24"><path d="M8 5h3v14H8zM13 5h3v14h-3z" fill="currentColor"/></svg><svg class="i-play" aria-hidden="true" viewBox="0 0 24 24"><path d="M16 5L5 12l11 7z" fill="currentColor"/></svg></button>
   <div class="marquee-track"><div>{items}</div><div aria-hidden="true">{items.replace('<a ', '<a tabindex="-1" ')}</div></div>
 </div>"""
 
@@ -173,12 +184,12 @@ def contact(pre, service=None):
     </div>
     <form class="form" id="lead" novalidate>
       <label>שם<input name="name" autocomplete="name"></label>
-      <label>טלפון<input name="phone" type="tel" inputmode="tel" autocomplete="tel" required placeholder="05X-XXXXXXX"></label>
+      <label>טלפון (חובה)<input name="phone" type="tel" inputmode="tel" autocomplete="tel" dir="ltr" required aria-required="true" aria-describedby="phone-err" placeholder="05X-XXXXXXX"><span class="err" id="phone-err" role="alert"></span></label>
       <label>שירות<select name="service">{opts}</select></label>
       <label>עיר<input name="city" autocomplete="address-level2"></label>
       <label class="full">מה צריך?<textarea name="msg" placeholder="לדוגמה: דירת 4 חדרים, שיפוץ אמבטיה וניקיון לפני כניסה"></textarea></label>
       <button class="btn btn-ink" type="submit" data-magnet>שליחה בוואטסאפ</button>
-      <p class="note">הטופס פותח וואטסאפ עם הפרטים שמילאתם. שום דבר לא נשמר באתר.</p>
+      <p class="note">הטופס פותח וואטסאפ עם הפרטים שמילאתם, והם נשלחים אלינו רק כשתלחצו שליחה בוואטסאפ. האתר עצמו לא שומר אותם. <a class="link" href="{pre}privacy/">מדיניות פרטיות</a></p>
     </form>
   </div>
 </section>"""
@@ -190,9 +201,9 @@ def footer(pre):
     <p class="statement">צוות <em>אחד</em> לכל הנכס.</p>
     <div class="foot-grid">
       <div><a class="mark" href="{pre or './'}"><svg viewBox="0 0 40 28" aria-hidden="true"><use href="#i-roof"/></svg><span class="mark-t"><b>ג׳מבו קלין</b><small>מהשיפוץ ועד הברק</small></span></a>
-        <ul style="margin-top:1rem"><li><a class="num" href="tel:0528580800">{PHONE}</a></li><li><a href="{WA}" target="_blank" rel="noopener">וואטסאפ</a></li><li><a href="{pre}#regions">עובדים בכל הארץ</a></li></ul></div>
-      <div><h4>שיפוצים</h4><ul>{col("reno")}</ul></div>
-      <div><h4>ניקיון ופוליש</h4><ul>{col("clean")}</ul></div>
+        <ul style="margin-top:1rem"><li><a class="num" href="tel:0528580800">{PHONE}</a></li><li><a href="{WA}" target="_blank" rel="noopener">וואטסאפ</a></li><li><a href="{pre}#regions">עובדים בכל הארץ</a></li><li><a href="{pre}hatzharat-negishut/">הצהרת נגישות</a></li><li><a href="{pre}privacy/">מדיניות פרטיות</a></li></ul></div>
+      <div><p class="menu-h">שיפוצים</p><ul>{col("reno")}</ul></div>
+      <div><p class="menu-h">ניקיון ופוליש</p><ul>{col("clean")}</ul></div>
     </div>
     <small>© {date.today().year} ג׳מבו קלין (ג'מבו קלין, גמבו קלין, Jumbo Clean). שיפוצים, ניקיון ופוליש בכל הארץ. התמונות באתר להמחשה</small>
   </div>
@@ -201,7 +212,9 @@ def footer(pre):
   <a class="btn btn-gold" href="tel:0528580800"><svg aria-hidden="true"><use href="#i-phone"/></svg>התקשרו</a>
   <a class="btn btn-ghost" href="{WA}" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-wa"/></svg>וואטסאפ</a>
 </nav>
+{A11Y_PANEL.replace("__PRE__", pre)}
 <script src="{pre}site.js" defer></script>
+<script src="{pre}a11y.js" defer></script>
 </body>
 </html>
 """
@@ -258,7 +271,7 @@ def home():
                 "ג'מבו קלין (גמבו קלין, Jumbo Clean): שיפוצים לדירות ולמשרדים: צבע, בנייה, טיח ואינסטלציה. ואחרי השיפוץ, ניקיון לפני אכלוס, פוליש קריסטל, פוליש לפורצלן וחידוש רצפות. בכל הארץ. 052-858-0800",
                 f"{SITE}/", pre, "home-done", ld)}
 {nav(pre)}
-<main id="main">
+<main id="main" tabindex="-1">
 <section class="hero night">
   <div class="grainient" aria-hidden="true"></div>
   <div class="wrap hero-grid">
@@ -339,7 +352,7 @@ def service(s):
     rel = "".join(card(BY_SLUG[r], pre) for r in s["related"])
     body = f"""{head(s["title"], s["desc"], url, pre, s["img"], ld)}
 {nav(pre, s["slug"])}
-<main id="main">
+<main id="main" tabindex="-1">
 <section class="s-hero night">
   <div class="grainient" aria-hidden="true"></div>
   <div class="wrap s-hero-grid">
@@ -362,9 +375,9 @@ def service(s):
     <div class="head"><h2 data-split>מה <em>כולל</em><br>השירות.</h2><p class="lead" data-words>זו רשימת הבסיס. בסיור בנכס נתאים אותה בדיוק למה שאתם צריכים.</p></div>
     <div class="incl">
       <ul class="checks">{checks}</ul>
-      <aside class="side-card" data-reveal><h3>מתאים במיוחד ל־</h3><ul>{fit}</ul>
+      <div class="side-card" data-reveal><h3>מתאים במיוחד ל־</h3><ul>{fit}</ul>
         <p>לקוחות פרטיים ועסקיים, בכל הארץ.</p>
-        <div class="cta-row"><a class="btn btn-gold" href="#contact" data-magnet>לקבלת הצעה</a></div></aside>
+        <div class="cta-row"><a class="btn btn-gold" href="#contact" data-magnet>לקבלת הצעה</a></div></div>
     </div>
   </div>
 </section>
@@ -393,23 +406,115 @@ def service(s):
 {footer(pre)}"""
     write(f"{s['slug']}/index.html", body)
 
+NEWWIN = '<span class="sr"> (נפתח בחלון חדש)</span>'
+
 def write(rel, text):
+    if rel.endswith(".html"):
+        text = re.sub(r'(<a [^>]*target="_blank"[^>]*>)(.*?)</a>', lambda m: m.group(1) + m.group(2) + NEWWIN + "</a>", text, flags=re.S)
     p = os.path.join(ROOT, rel)
     os.makedirs(os.path.dirname(p), exist_ok=True)
     with open(p, "w", encoding="utf-8", newline="\n") as f:
         f.write(text)
 
 def sitemap():
-    urls = [f"{SITE}/"] + [f"{SITE}/{s['slug']}/" for s in SERVICES]
+    urls = [f"{SITE}/"] + [f"{SITE}/{s['slug']}/" for s in SERVICES] + [f"{SITE}/hatzharat-negishut/", f"{SITE}/privacy/"]
     xml = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + "".join(
         f"  <url><loc>{u}</loc><lastmod>{TODAY}</lastmod></url>\n" for u in urls) + "</urlset>\n"
     write("sitemap.xml", xml)
     write("robots.txt", f"User-agent: *\nAllow: /\n\nSitemap: {SITE}/sitemap.xml\n")
+
+AUDIT_DATE = "16.11.2026"
+
+def legal_page(slug, title, desc, h1, body_html):
+    pre = "../"
+    url = f"{SITE}/{slug}/"
+    ld = {"@context": "https://schema.org", "@type": "WebPage", "name": title, "url": url, "inLanguage": "he"}
+    page = f"""{head(title, desc, url, pre, None, ld)}
+{nav(pre)}
+<main id="main" tabindex="-1">
+<section class="s-hero night legal-hero">
+  <div class="wrap">
+    <nav class="crumbs" aria-label="פירורי לחם"><a href="../">ראשי</a><span aria-hidden="true">/</span><span aria-current="page">{h1}</span></nav>
+    <h1>{h1}</h1>
+  </div>
+</section>
+<section class="section paper">
+  <div class="wrap legal">{body_html}</div>
+</section>
+</main>
+{footer(pre)}"""
+    write(f"{slug}/index.html", page)
+
+def legal():
+    wa = f'<a class="link" href="{WA}" target="_blank" rel="noopener">וואטסאפ</a>'
+    tel = f'<a class="link num" href="tel:0528580800">{PHONE}</a>'
+    a11y = f"""
+<p>ג׳מבו קלין רואה חשיבות רבה במתן שירות שוויוני לכל הלקוחות, ובכללם אנשים עם מוגבלות. השקענו בהנגשת האתר כדי שכל אחד יוכל לגלוש בו, לקרוא על השירותים וליצור איתנו קשר בנוחות.</p>
+<h2>רמת הנגישות</h2>
+<p>האתר הותאם להוראות תקנות שוויון זכויות לאנשים עם מוגבלות (התאמות נגישות לשירות), התשע״ג 2013, ולתקן הישראלי ת״י 5568 המבוסס על הנחיות WCAG 2.0, ברמה AA. האתר נבדק בדפדפנים Chrome, Edge, Firefox ו־Safari, במחשב ובטלפון נייד.</p>
+<h2>מה עשינו באתר</h2>
+<ul class="legal-list">
+<li>ניווט מלא באמצעות המקלדת: Tab למעבר בין רכיבים, Enter להפעלה, Esc לסגירת תפריטים.</li>
+<li>קישור "דילוג לתוכן הראשי" בתחילת כל עמוד.</li>
+<li>מבנה כותרות היררכי וסימון אזורים (כותרת, ניווט, תוכן ראשי, תחתית) לקוראי מסך.</li>
+<li>טקסט חלופי לכל התמונות שמעבירות מידע.</li>
+<li>ניגודיות צבעים של 4.5:1 לפחות בין טקסט לרקע.</li>
+<li>שדות הטופס מקושרים לתוויות, ושדה חובה מסומן. הודעת שגיאה מוקראת בעברית.</li>
+<li>הפס הנע עם שמות השירותים ניתן לעצירה בכפתור, ונעצר גם במעבר עכבר.</li>
+<li>האתר מכבד את הגדרת "הפחתת תנועה" במערכת ההפעלה.</li>
+<li>קישורים שנפתחים בחלון חדש מסומנים לקוראי מסך.</li>
+<li>האתר מותאם לתצוגה בטלפון נייד ולהגדלת תצוגה עד 200% בלי לאבד תוכן.</li>
+</ul>
+<h2>תפריט הנגישות</h2>
+<p>בכל עמוד יש כפתור נגישות בפינת המסך, שאפשר לפתוח גם בקיצור Alt+A. בתפריט אפשר להגדיל טקסט, להגדיל ריווח שורות, לשנות ניגודיות (גבוהה, צבעים הפוכים, שחור לבן), להדגיש קישורים וכותרות, לעבור לגופן קריא, להגדיל את הסמן ולעצור אנימציות. ההגדרות נשמרות בדפדפן שלכם בלבד.</p>
+<p>התפריט הוא כלי נוחות בלבד. הוא לא משנה את תוכן האתר, והנגישות נבנתה בקוד האתר עצמו.</p>
+<h2>מגבלות נגישות ידועות</h2>
+<ul class="legal-list">
+<li>שליחת הטופס פותחת את אפליקציית וואטסאפ, שהנגישות שלה באחריות החברה המפעילה אותה. אפשר תמיד ליצור קשר גם בטלפון.</li>
+<li>התמונות באתר הן תמונות המחשה ולא צילומים מעבודות ספציפיות.</li>
+</ul>
+<p>אם נתקלתם ברכיב שאינו נגיש, נשמח לדעת ונתקן בהקדם.</p>
+<h2>הסדרי נגישות במתן השירות</h2>
+<p>השירות שלנו ניתן בבית הלקוח או בעסק שלו, ואין לנו קבלת קהל במשרד. אם אתם זקוקים להתאמה בזמן התיאום או בזמן העבודה, למשל תיאום בהודעות כתובות במקום בשיחה, אמרו לנו ונתאים את עצמנו.</p>
+<h2>פנייה בנושא נגישות</h2>
+<p>לכל שאלה, בקשה או תלונה בנושא נגישות אפשר לפנות אלינו:</p>
+<ul class="legal-list">
+<li>טלפון: {tel}</li>
+<li>הודעה ב{wa}</li>
+</ul>
+<p>נחזור אליכם בהקדם.</p>
+<p class="legal-meta">תאריך בדיקת הנגישות האחרונה: {AUDIT_DATE}<br>תאריך עדכון ההצהרה: {AUDIT_DATE}</p>"""
+    legal_page("hatzharat-negishut", "הצהרת נגישות | ג'מבו קלין Jumbo Clean",
+               "הצהרת הנגישות של אתר ג׳מבו קלין: רמת הנגישות, ההתאמות שבוצעו באתר, תפריט הנגישות ופרטי פנייה בנושא נגישות.",
+               "הצהרת נגישות", a11y)
+    priv = f"""
+<p>מדיניות זו מסבירה איזה מידע נאסף כשאתם משתמשים באתר jumbo-clean.co.il, למה הוא משמש ומה הזכויות שלכם, בהתאם לחוק הגנת הפרטיות, התשמ״א 1981.</p>
+<h2>מי אנחנו</h2>
+<p>האתר שייך לג׳מבו קלין, עסק לשיפוצים, ניקיון ופוליש. ליצירת קשר: {tel} או ב{wa}.</p>
+<h2>איזה מידע אנחנו מקבלים</h2>
+<ul class="legal-list">
+<li><b>פרטים שאתם שולחים לנו:</b> כשאתם ממלאים את הטופס, הפרטים (שם, טלפון, שירות, עיר ותיאור העבודה) מועברים לוואטסאפ במכשיר שלכם. הם מגיעים אלינו רק אם תלחצו "שליחה" בוואטסאפ. האתר עצמו לא שומר אותם ולא מעביר אותם לאף גורם אחר.</li>
+<li><b>שיחות והודעות:</b> כשאתם מתקשרים או כותבים לנו, נקבל את מספר הטלפון ואת מה שתספרו לנו.</li>
+<li><b>מידע טכני:</b> שרת האחסון (Vercel) רושם באופן אוטומטי נתונים טכניים כמו כתובת IP וסוג דפדפן, לצורכי אבטחה ותפעול. הגופנים באתר נטענים מ־Google Fonts, ולכן הדפדפן שלכם פונה לשרתי Google.</li>
+</ul>
+<h2>למה אנחנו משתמשים במידע</h2>
+<p>רק כדי לחזור אליכם, לתת הצעת מחיר, לתאם עבודה ולתת שירות. לא נמכור את הפרטים שלכם ולא נשלח לכם פרסומות בלי הסכמה.</p>
+<h2>עוגיות ושמירה בדפדפן</h2>
+<p>האתר לא משתמש בעוגיות מעקב, בכלי סטטיסטיקה או בפרסום ממוקד. אם תשנו הגדרות בתפריט הנגישות, הן יישמרו בדפדפן שלכם בלבד (localStorage) כדי שלא תצטרכו להגדיר אותן שוב.</p>
+<h2>שמירה ואבטחה</h2>
+<p>פניות שמגיעות אלינו נשמרות בטלפון של העסק רק כל עוד הן נחוצות לטיפול בעבודה. האתר מוגש בחיבור מאובטח (HTTPS).</p>
+<h2>הזכויות שלכם</h2>
+<p>אתם רשאים לבקש לעיין במידע שלכם שנמצא אצלנו, לתקן אותו או למחוק אותו. פנו אלינו בטלפון או בוואטסאפ ונטפל בבקשה.</p>
+<p class="legal-meta">עדכון אחרון: {AUDIT_DATE}</p>"""
+    legal_page("privacy", "מדיניות פרטיות | ג'מבו קלין Jumbo Clean",
+               "מדיניות הפרטיות של אתר ג׳מבו קלין: איזה מידע נאסף, למה הוא משמש והזכויות שלכם.",
+               "מדיניות פרטיות", priv)
 
 if __name__ == "__main__":
     build_images()
     home()
     for s in SERVICES:
         service(s)
+    legal()
     sitemap()
-    print("built", 1 + len(SERVICES), "pages")
+    print("built", 3 + len(SERVICES), "pages")

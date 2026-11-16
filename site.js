@@ -47,15 +47,34 @@
     document.addEventListener('keydown', (e) => { if (e.key === 'Escape') mega.open = false; });
   }
 
-  // mobile sheet
+  // mobile sheet (modal: focus moves in, Tab is trapped, Esc closes, focus returns)
   const sheet = document.getElementById('sheet');
-  document.querySelectorAll('[data-sheet]').forEach((b) => b.addEventListener('click', () => {
-    const open = !sheet.classList.contains('open');
-    sheet.classList.toggle('open', open);
+  const menuBtn = document.querySelector('.nav-menu');
+  const setSheet = (open) => {
+    sheet.hidden = !open;
     document.body.style.overflow = open ? 'hidden' : '';
-    document.querySelector('.nav-menu').setAttribute('aria-expanded', open);
+    menuBtn.setAttribute('aria-expanded', String(open));
+    if (open) sheet.querySelector('a, button').focus(); else menuBtn.focus();
+  };
+  document.querySelectorAll('[data-sheet]').forEach((b) => b.addEventListener('click', () => setSheet(sheet.hidden)));
+  if (sheet) {
+    sheet.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => { sheet.hidden = true; document.body.style.overflow = ''; menuBtn.setAttribute('aria-expanded', 'false'); }));
+    sheet.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') setSheet(false);
+      if (e.key === 'Tab') {
+        const f = [...sheet.querySelectorAll('a, button')]; const first = f[0]; const last = f[f.length - 1];
+        if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+        else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+      }
+    });
+  }
+
+  // marquee pause / play (WCAG 2.2.2)
+  document.querySelectorAll('.marquee-pause').forEach((b) => b.addEventListener('click', () => {
+    const m = b.closest('.marquee'); const paused = m.classList.toggle('paused');
+    b.setAttribute('aria-pressed', String(paused));
+    b.querySelector('.sr').textContent = paused ? 'הפעלת הפס הנע' : 'עצירת הפס הנע';
   }));
-  sheet && sheet.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => { sheet.classList.remove('open'); document.body.style.overflow = ''; }));
 
   // SpotlightCard: pointer position into --mx/--my (rAF throttled)
   if (fine) document.querySelectorAll('.card').forEach((c) => {
@@ -140,6 +159,7 @@
     const phone = form.querySelector('[name=phone]');
     const ok = /^0\d{8,9}$/.test(String(f.get('phone')).replace(/[\s-]/g, ''));
     phone.setAttribute('aria-invalid', ok ? 'false' : 'true');
+    document.getElementById('phone-err').textContent = ok ? '' : 'נא להזין מספר טלפון תקין, לדוגמה 050-1234567';
     if (!ok) { phone.focus(); return; }
     const lines = [
       'שלום ג׳מבו קלין, אשמח להצעת מחיר.',
