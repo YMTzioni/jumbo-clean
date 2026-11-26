@@ -2,6 +2,7 @@
 """Builds index.html, one page per service, sitemap.xml and responsive images.
 Run:  python tools/build.py        (from the site root)"""
 import json, os, re, sys, html
+from urllib.parse import quote
 from datetime import date
 sys.path.insert(0, os.path.dirname(__file__))
 from content import *  # noqa
@@ -117,6 +118,7 @@ def nav(pre, current=None):
       <details><summary>שירותים</summary>
         <div class="mega">{col("reno","שיפוצים")}{col("clean","ניקיון ופוליש")}</div>
       </details>
+      <a href="{pre}mesir-avnit/" class="nav-new">מסיר אבנית <span>חדש</span></a>
       <a href="{home}#process">איך עובדים</a>
       <a href="{home}#faq">שאלות</a>
       <a href="#contact">צור קשר</a>
@@ -128,6 +130,7 @@ def nav(pre, current=None):
 <div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-label="תפריט" hidden>
   <button class="icon-btn sheet-close" type="button" data-sheet><svg aria-hidden="true"><use href="#i-x"/></svg><span class="sr">סגירה</span></button>
   <p class="menu-h">שירותים</p>{sheet_links}
+  <p class="menu-h">מוצרים</p><a href="{pre}mesir-avnit/">מסיר אבנית למקלחונים</a>
   <p class="menu-h">עוד</p><a href="{home}#process">איך עובדים</a><a href="{home}#faq">שאלות</a><a href="#contact">צור קשר</a>
 </div>"""
 
@@ -203,7 +206,7 @@ def footer(pre):
       <div><a class="mark" href="{pre or './'}"><svg viewBox="0 0 40 28" aria-hidden="true"><use href="#i-roof"/></svg><span class="mark-t"><b>ג׳מבו קלין</b><small>מהשיפוץ ועד הברק</small></span></a>
         <ul style="margin-top:1rem"><li><a class="num" href="tel:0528580800">{PHONE}</a></li><li><a href="{WA}" target="_blank" rel="noopener">וואטסאפ</a></li><li><a href="{pre}#regions">עובדים בכל הארץ</a></li><li><a href="{pre}hatzharat-negishut/">הצהרת נגישות</a></li><li><a href="{pre}privacy/">מדיניות פרטיות</a></li></ul></div>
       <div><p class="menu-h">שיפוצים</p><ul>{col("reno")}</ul></div>
-      <div><p class="menu-h">ניקיון ופוליש</p><ul>{col("clean")}</ul></div>
+      <div><p class="menu-h">ניקיון ופוליש</p><ul>{col("clean")}</ul><p class="menu-h" style="margin-top:1.25rem">מוצרים</p><ul><li><a href="{pre}mesir-avnit/">מסיר אבנית למקלחונים</a></li></ul></div>
     </div>
     <small>© {date.today().year} ג׳מבו קלין (ג'מבו קלין, גמבו קלין, Jumbo Clean). שיפוצים, ניקיון ופוליש בכל הארץ. התמונות באתר להמחשה</small>
   </div>
@@ -299,6 +302,7 @@ def home():
 <section class="section alt paper">
   <div class="wrap">{ba_block("reno", pre, "גררו. <em>תראו</em><br>את ההבדל.", "אותו חדר, לפני ואחרי: קירות, ריצוף, חלון וניקיון סופי. משכו את הידית שמאלה עד הסוף.")}</div>
 </section>
+{product_teaser(pre)}
 <section class="section paper" id="process">
   <div class="wrap">
     <div class="head"><h2 data-split>מהשיחה ועד<br><em>המפתח</em>.</h2><p class="lead" data-words>ארבעה שלבים פשוטים. בכל שלב אתם יודעים מה קורה, מי בשטח ומתי מסיימים.</p></div>
@@ -417,7 +421,7 @@ def write(rel, text):
         f.write(text)
 
 def sitemap():
-    urls = [f"{SITE}/"] + [f"{SITE}/{s['slug']}/" for s in SERVICES] + [f"{SITE}/hatzharat-negishut/", f"{SITE}/privacy/"]
+    urls = [f"{SITE}/"] + [f"{SITE}/{s['slug']}/" for s in SERVICES] + [f"{SITE}/mesir-avnit/", f"{SITE}/hatzharat-negishut/", f"{SITE}/privacy/"]
     xml = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + "".join(
         f"  <url><loc>{u}</loc><lastmod>{TODAY}</lastmod></url>\n" for u in urls) + "</urlset>\n"
     write("sitemap.xml", xml)
@@ -444,6 +448,103 @@ def legal_page(slug, title, desc, h1, body_html):
 </main>
 {footer(pre)}"""
     write(f"{slug}/index.html", page)
+
+P_FEATURES = [
+    ("מסיר אבנית קשה ומהר", "מפרק שכבות אבנית ושאריות סבון על הזכוכית, הברזים והאריחים."),
+    ("ברק בלי סימנים", "הזכוכית נשארת שקופה ומבריקה, בלי פסים ובלי כתמי מים."),
+    ("מגן לאורך זמן", "שומר על המקלחון במראה חדש לאורך זמן."),
+    ("לכל סוגי המקלחונים", "חומר מקצועי שמתאים לכל סוגי המקלחונים."),
+]
+P_FAQ = [
+    ("איך מזמינים?", "שלחו לנו הודעה בוואטסאפ או התקשרו, ונגיד לכם איך להשיג את המוצר."),
+    ("איך משתמשים?", "מרססים על המשטח, ממתינים מעט ומנגבים במטלית לחה. לפני השימוש קראו את הוראות השימוש והאזהרות שעל התווית."),
+    ("מי עומד מאחורי המוצר?", "ג׳מבו קלין, החברה שמנקה דירות לפני אכלוס ומבצעת פוליש לרצפות. רצינו שגם בבית יהיה לכם חומר ברמה מקצועית."),
+]
+
+def product_teaser(pre):
+    return f"""<section class="section night prod-teaser">
+  <div class="wrap prod-split">
+    <div class="prod-shot" data-reveal>{img("product-studio", "בקבוק ג׳מבו קלין מסיר אבנית עוצמתי למקלחונים", pre, "(max-width: 900px) 100vw, 45vw", w=1800, h=1800)}</div>
+    <div>
+      <span class="tag tag-new">חדש מג׳מבו קלין</span>
+      <h2 data-split>מסיר אבנית<br><em>עוצמתי</em> למקלחונים.</h2>
+      <p class="lead" data-words>החומר המקצועי של ג׳מבו קלין, עכשיו גם לבית. מסיר אבנית קשה, משאיר ברק בלי סימנים ומתאים לכל סוגי המקלחונים.</p>
+      <div class="cta-row"><a class="btn btn-gold" href="{pre}mesir-avnit/" data-magnet>להכיר את המוצר</a></div>
+    </div>
+  </div>
+</section>"""
+
+def product():
+    pre = "../"
+    url = f"{SITE}/mesir-avnit/"
+    name = "ג׳מבו קלין מסיר אבנית עוצמתי למקלחונים"
+    desc = "מסיר אבנית עוצמתי למקלחונים מבית ג׳מבו קלין: חומר מקצועי שמסיר אבנית קשה, משאיר ברק בלי סימנים ומתאים לכל סוגי המקלחונים. להזמנה: 052-858-0800"
+    wa_order = WA + "?text=" + quote("שלום ג׳מבו קלין, אשמח לפרטים על מסיר האבנית למקלחונים")
+    ld = {"@context": "https://schema.org", "@graph": [
+        {"@type": "Product", "name": name, "description": desc, "url": url,
+         "brand": {"@type": "Brand", "name": "ג׳מבו קלין"},
+         "image": [f"{SITE}/assets/img/product-studio-1200.webp", f"{SITE}/assets/img/product-spray-1200.webp", f"{SITE}/assets/img/product-bath-1200.webp"],
+         "category": "חומרי ניקוי"},
+        faq_ld(P_FAQ),
+        {"@type": "BreadcrumbList", "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "ראשי", "item": f"{SITE}/"},
+            {"@type": "ListItem", "position": 2, "name": "מסיר אבנית למקלחונים", "item": url}]}]}
+    feats = "".join(f'<li class="feat" data-reveal style="--d:{i}"><svg aria-hidden="true"><use href="#i-spark"/></svg><h3>{t}</h3><p>{d}</p></li>' for i, (t, d) in enumerate(P_FEATURES))
+    order_btn = f'<a class="btn btn-gold" href="{wa_order}" target="_blank" rel="noopener" data-magnet><svg aria-hidden="true"><use href="#i-wa"/></svg>להזמנה בוואטסאפ</a>'
+    phone_btn = f'<a class="btn btn-ghost" href="tel:0528580800"><svg aria-hidden="true"><use href="#i-phone"/></svg><span class="num">{PHONE}</span></a>'
+    body = f"""{head("מסיר אבנית עוצמתי למקלחונים | ג'מבו קלין Jumbo Clean", desc, url, pre, "product-studio", ld)}
+{nav(pre)}
+<main id="main" tabindex="-1">
+<section class="s-hero night prod-hero">
+  <div class="grainient" aria-hidden="true"></div>
+  <div class="wrap s-hero-grid">
+    <div>
+      <nav class="crumbs" aria-label="פירורי לחם"><a href="../">ראשי</a><span aria-hidden="true">/</span><span>מוצרים</span><span aria-hidden="true">/</span><span aria-current="page">מסיר אבנית</span></nav>
+      <img class="prod-logo" src="../assets/product-logo-720.webp" srcset="../assets/product-logo-360.webp 360w, ../assets/product-logo-720.webp 720w" sizes="240px" width="720" height="478" alt="ג׳מבו קלין">
+      <h1 data-split>מסיר אבנית <em>עוצמתי</em><br>למקלחונים.</h1>
+      <p class="lead" data-words>חומר ניקוי מקצועי מבית ג׳מבו קלין. מסיר אבנית קשה מהזכוכית, מהברזים ומהאריחים, ומשאיר את המקלחון מבריק בלי סימנים.</p>
+      <div class="cta-row">{order_btn}{phone_btn}</div>
+    </div>
+    <div class="prod-shot prod-shot-hero">{img("product-studio", name, pre, "(max-width: 900px) 100vw, 50vw", eager=True, w=1800, h=1800)}</div>
+  </div>
+</section>
+<section class="section paper">
+  <div class="wrap">
+    <div class="head"><h2 data-split>למה <em>ג׳מבו קלין</em>.</h2><p class="lead" data-words>הניסיון שלנו בניקיון דירות לפני אכלוס, בבקבוק אחד לבית.</p></div>
+    <ul class="feats">{feats}</ul>
+  </div>
+</section>
+<section class="section alt paper">
+  <div class="wrap prod-gallery">
+    <figure class="prod-tall" data-reveal>{img("product-spray", "ריסוס מסיר האבנית על זכוכית של מקלחון", pre, "(max-width: 900px) 100vw, 50vw", w=1800, h=2250)}</figure>
+    <div class="prod-gallery-copy">
+      <h2 data-split>מרססים.<br>מנגבים.<br><em>מבריק</em>.</h2>
+      <ol class="use-steps">
+        <li><b>1</b><span>מרססים על הזכוכית, הברזים או האריחים.</span></li>
+        <li><b>2</b><span>ממתינים מעט, שהחומר יפרק את האבנית.</span></li>
+        <li><b>3</b><span>מנגבים במטלית לחה ושוטפים במים.</span></li>
+      </ol>
+      <p class="note-label">לפני השימוש קראו את הוראות השימוש והאזהרות שעל התווית.</p>
+      <figure class="prod-wide" data-reveal>{img("product-bath", "בקבוק מסיר האבנית על דופן אמבטיה ליד מקלחון זכוכית", pre, "(max-width: 900px) 100vw, 40vw", w=1800, h=2250)}</figure>
+    </div>
+  </div>
+</section>
+<section class="section paper" id="faq">
+  <div class="wrap">
+    <div class="head"><h2 data-split>שאלות על<br><em>המוצר</em>.</h2><p>עוד שאלה? <a class="link" href="tel:0528580800">התקשרו</a> או <a class="link" href="{wa_order}" target="_blank" rel="noopener">כתבו בוואטסאפ</a>.</p></div>
+    {faq(P_FAQ)}
+  </div>
+</section>
+<section class="section night prod-cta">
+  <div class="wrap prod-cta-in">
+    <h2 data-split>רוצים <em>מקלחון</em><br>מבריק?</h2>
+    <div class="cta-row">{order_btn}{phone_btn}</div>
+    <p>צריכים ניקיון מקצועי לכל הבית? <a class="link" href="../nikayon-klali/">לשירותי הניקיון שלנו</a></p>
+  </div>
+</section>
+</main>
+{footer(pre)}"""
+    write("mesir-avnit/index.html", body)
 
 def legal():
     wa = f'<a class="link" href="{WA}" target="_blank" rel="noopener">וואטסאפ</a>'
@@ -516,5 +617,6 @@ if __name__ == "__main__":
     for s in SERVICES:
         service(s)
     legal()
+    product()
     sitemap()
-    print("built", 3 + len(SERVICES), "pages")
+    print("built", 4 + len(SERVICES), "pages")
