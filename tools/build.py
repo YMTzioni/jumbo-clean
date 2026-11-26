@@ -449,6 +449,8 @@ def legal_page(slug, title, desc, h1, body_html):
 {footer(pre)}"""
     write(f"{slug}/index.html", page)
 
+P_PRICE = "19.90"
+
 P_FEATURES = [
     ("מסיר אבנית קשה ומהר", "מפרק שכבות אבנית ושאריות סבון על הזכוכית, הברזים והאריחים."),
     ("ברק בלי סימנים", "הזכוכית נשארת שקופה ומבריקה, בלי פסים ובלי כתמי מים."),
@@ -456,6 +458,7 @@ P_FEATURES = [
     ("לכל סוגי המקלחונים", "חומר מקצועי שמתאים לכל סוגי המקלחונים."),
 ]
 P_FAQ = [
+    ("כמה זה עולה?", f"המחיר המומלץ לצרכן הוא {P_PRICE} ₪ כולל מע״מ."),
     ("איך מזמינים?", "שלחו לנו הודעה בוואטסאפ או התקשרו, ונגיד לכם איך להשיג את המוצר."),
     ("איך משתמשים?", "מרססים על המשטח, ממתינים מעט ומנגבים במטלית לחה. לפני השימוש קראו את הוראות השימוש והאזהרות שעל התווית."),
     ("מי עומד מאחורי המוצר?", "ג׳מבו קלין, החברה שמנקה דירות לפני אכלוס ומבצעת פוליש לרצפות. רצינו שגם בבית יהיה לכם חומר ברמה מקצועית."),
@@ -484,7 +487,8 @@ def product():
         {"@type": "Product", "name": name, "description": desc, "url": url,
          "brand": {"@type": "Brand", "name": "ג׳מבו קלין"},
          "image": [f"{SITE}/assets/img/product-studio-1200.webp", f"{SITE}/assets/img/product-spray-1200.webp", f"{SITE}/assets/img/product-bath-1200.webp"],
-         "category": "חומרי ניקוי"},
+         "category": "חומרי ניקוי",
+         "offers": {"@type": "Offer", "price": P_PRICE, "priceCurrency": "ILS", "url": url, "seller": {"@id": f"{SITE}/#business"}}},
         faq_ld(P_FAQ),
         {"@type": "BreadcrumbList", "itemListElement": [
             {"@type": "ListItem", "position": 1, "name": "ראשי", "item": f"{SITE}/"},
@@ -515,6 +519,7 @@ def product():
       <h1 data-split>מסיר אבנית<br><em>עוצמתי</em><br>למקלחונים</h1>
       <p class="lead" data-words>חומר ניקוי מקצועי מבית ג׳מבו קלין. מסיר אבנית קשה מהזכוכית, מהברזים ומהאריחים, ומשאיר את המקלחון מבריק בלי סימנים.</p>
       <div class="cta-row">{order_btn}{phone_btn}</div>
+      <p class="pp-price"><span class="pp-price-tag"><small>מחיר מומלץ לצרכן</small><b><span class="num">{P_PRICE}</span> ₪</b></span><span class="pp-price-note">כולל מע״מ</span></p>
       <p class="pp-grade">חומר מקצועי <span dir="ltr" lang="en">PROFESSIONAL GRADE</span></p>
     </div>
     <div class="pp-bottle">
@@ -564,6 +569,7 @@ def product():
   <div class="wrap pp-cta-in">
     <img src="../assets/product-logo-360.webp" width="360" height="239" alt="" class="pp-cta-logo" loading="lazy">
     <h2 data-split>מקלחון <em>מבריק</em>.<br>בלי מאמץ.</h2>
+    <p class="pp-price pp-price-c"><span class="pp-price-tag"><small>מחיר מומלץ לצרכן</small><b><span class="num">{P_PRICE}</span> ₪</b></span><span class="pp-price-note">כולל מע״מ</span></p>
     <div class="cta-row">{order_btn}{phone_btn}</div>
     <p>צריכים ניקיון מקצועי לכל הבית? <a class="link" href="../nikayon-klali/">לשירותי הניקיון שלנו</a></p>
   </div>

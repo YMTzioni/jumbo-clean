@@ -391,3 +391,7 @@ html.a11y-contrast-mono :is(.nav,main,footer,.dock,.sheet){filter:grayscale(1)}
 @media (max-width:980px){.feats{grid-template-columns:1fr 1fr}}
 @media (max-width:900px){.prod-split,.prod-gallery{grid-template-columns:1fr}}
 @media (max-width:560px){.feats{grid-template-columns:1fr}}
+
+/* mobile dock: two buttons always fit, even at 320px */
+.dock .btn{min-width:0;padding:0 .8rem;gap:.4rem;font-size:.98rem}
+.dock .btn .sr{position:absolute}
