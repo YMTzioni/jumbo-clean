@@ -109,3 +109,12 @@ html.a11y-contrast-high .prod-page{--p-ink:oklch(0% 0 0);--p-ink-2:oklch(10% 0 0
 .pp-price-note{color:var(--p-cyan);font-size:.9rem;font-weight:700}
 .prod-page .pp h1,.prod-page .pp h2{width:fit-content;max-width:100%}
 @media (max-width:700px){.pp-hero-grid{grid-template-columns:1fr}.pp-bottle{max-width:420px;justify-self:center;width:100%;order:-1}}
+
+/* patent seal + before/after on the product page */
+.prod-page .pp-patent{display:inline-flex;align-items:center;gap:.5rem;margin:1.6rem 0 1rem;padding:.45rem .95rem .45rem 1.1rem;border-radius:999px;background:var(--p-yellow);color:var(--p-ink);font:800 1rem/1.2 var(--p-display);box-shadow:0 4px 0 var(--p-yellow-2),0 12px 26px oklch(0% 0 0 / .3)}
+.prod-page .pp-patent svg{width:1.3rem;height:1.3rem;flex:none}
+.prod-page .pp-ba .ba-wrap + .ba-wrap{margin-top:clamp(3rem,7vw,5.5rem)}
+.prod-page .pp-ba .ba-wrap:nth-of-type(2n){direction:ltr}
+.prod-page .pp-ba .ba-wrap:nth-of-type(2n) > *{direction:rtl}
+.prod-page .pp-ba .ba-copy h2{font-size:clamp(2rem,4.5vw,3.2rem)}
+.prod-page .pp-ba .ba-copy .lead{color:var(--p-text)}

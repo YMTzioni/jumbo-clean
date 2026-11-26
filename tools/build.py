@@ -452,13 +452,15 @@ def legal_page(slug, title, desc, h1, body_html):
 P_PRICE = "79.90"
 
 P_FEATURES = [
-    ("מסיר אבנית קשה ומהר", "מפרק שכבות אבנית ושאריות סבון על הזכוכית, הברזים והאריחים."),
-    ("ברק בלי סימנים", "הזכוכית נשארת שקופה ומבריקה, בלי פסים ובלי כתמי מים."),
-    ("מגן לאורך זמן", "שומר על המקלחון במראה חדש לאורך זמן."),
-    ("לכל סוגי המקלחונים", "חומר מקצועי שמתאים לכל סוגי המקלחונים."),
+    ("פטנט ייחודי של ג׳מבו קלין", "נוסחה שפיתחנו בעצמנו מתוך אלפי שעות ניקיון בשטח. אין אותה בשום מקום אחר."),
+    ("ברק בלי סימנים", "הזכוכית נשארת שקופה והכרום מבריק, בלי פסים, בלי כתמי מים ובמראה חדש לאורך זמן."),
+    ("מסיר הכול", "אבנית קשה, שאריות סבון, כתמי מים, משקעי מינרלים ולכלוך עקשן. ריסוס אחד וזה יורד."),
+    ("לכל סוגי המקלחונים", "זכוכית, ברזים, ראשי מקלחת, אריחים וכיורים. חומר מקצועי לכל המקלחון."),
 ]
 P_FAQ = [
     ("כמה זה עולה?", f"{P_PRICE} ₪ כולל משלוח עד הבית."),
+    ("מה מיוחד במוצר?", "זה פטנט ייחודי של ג׳מבו קלין: נוסחה שפיתחנו בעצמנו, אחרי שנים של ניקיון דירות לפני אכלוס, כי שום חומר מהמדף לא הוריד את מה שאנחנו פוגשים בשטח."),
+    ("מה הוא מסיר?", "הכול: אבנית קשה וישנה, שאריות סבון, כתמי מים, משקעי מינרלים ולכלוך עקשן, מזכוכית, ברזים, ראשי מקלחת, אריחים וכיורים."),
     ("איך מזמינים?", "שלחו לנו הודעה בוואטסאפ או התקשרו, ונגיד לכם איך להשיג את המוצר."),
     ("איך משתמשים?", "מרססים על המשטח, ממתינים מעט ומנגבים במטלית לחה. לפני השימוש קראו את הוראות השימוש והאזהרות שעל התווית."),
     ("מי עומד מאחורי המוצר?", "ג׳מבו קלין, החברה שמנקה דירות לפני אכלוס ומבצעת פוליש לרצפות. רצינו שגם בבית יהיה לכם חומר ברמה מקצועית."),
@@ -469,9 +471,9 @@ def product_teaser(pre):
   <div class="wrap prod-split">
     <div class="prod-shot" data-reveal>{img("product-studio", "בקבוק ג׳מבו קלין מסיר אבנית עוצמתי למקלחונים", pre, "(max-width: 900px) 100vw, 45vw", w=1800, h=1800)}</div>
     <div>
-      <span class="tag tag-new">חדש מג׳מבו קלין</span>
+      <span class="tag tag-new">חדש. פטנט ייחודי של ג׳מבו קלין</span>
       <h2 data-split>מסיר אבנית<br><em>עוצמתי</em> למקלחונים.</h2>
-      <p class="lead" data-words>החומר המקצועי של ג׳מבו קלין, עכשיו גם לבית. מסיר אבנית קשה, משאיר ברק בלי סימנים ומתאים לכל סוגי המקלחונים.</p>
+      <p class="lead" data-words>הנוסחה שפיתחנו לעבודה בשטח, עכשיו גם לבית. מסיר הכול: אבנית קשה, שאריות סבון וכתמי מים, ומשאיר ברק בלי סימנים.</p>
       <div class="cta-row"><a class="btn btn-gold" href="{pre}mesir-avnit/" data-magnet>להכיר את המוצר</a></div>
     </div>
   </div>
@@ -481,7 +483,7 @@ def product():
     pre = "../"
     url = f"{SITE}/mesir-avnit/"
     name = "ג׳מבו קלין מסיר אבנית עוצמתי למקלחונים"
-    desc = "מסיר אבנית עוצמתי למקלחונים מבית ג׳מבו קלין: חומר מקצועי שמסיר אבנית קשה, משאיר ברק בלי סימנים ומתאים לכל סוגי המקלחונים. להזמנה: 052-858-0800"
+    desc = f"מסיר אבנית עוצמתי למקלחונים, פטנט ייחודי של ג׳מבו קלין. מסיר הכול: אבנית קשה, שאריות סבון וכתמי מים מזכוכית וברזים. {P_PRICE} ₪ כולל משלוח. להזמנה: 052-858-0800"
     wa_order = WA + "?text=" + quote("שלום ג׳מבו קלין, אשמח לפרטים על מסיר האבנית למקלחונים")
     ld = {"@context": "https://schema.org", "@graph": [
         {"@type": "Product", "name": name, "description": desc, "url": url,
@@ -517,7 +519,8 @@ def product():
       <img class="pp-logo" src="../assets/product-logo-720.webp" srcset="../assets/product-logo-360.webp 360w, ../assets/product-logo-720.webp 720w" sizes="260px" width="720" height="478" alt="ג׳מבו קלין">
       <p class="pp-new"><span>חדש</span></p>
       <h1 data-split>מסיר אבנית<br><em>עוצמתי</em><br>למקלחונים</h1>
-      <p class="lead" data-words>חומר ניקוי מקצועי מבית ג׳מבו קלין. מסיר אבנית קשה מהזכוכית, מהברזים ומהאריחים, ומשאיר את המקלחון מבריק בלי סימנים.</p>
+      <p class="pp-patent"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7 3v5c0 4.6-3 8.3-7 10-4-1.7-7-5.4-7-10V6z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M9 12.5l2 2 4-4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>פטנט ייחודי של ג׳מבו קלין</p>
+      <p class="lead" data-words>מסיר הכול. אבנית קשה, שאריות סבון, כתמי מים ולכלוך עקשן יורדים מהזכוכית, מהברזים ומהאריחים בריסוס אחד, והמקלחון נשאר מבריק בלי סימנים.</p>
       <div class="cta-row">{order_btn}{phone_btn}</div>
       <p class="pp-price"><span class="pp-price-tag"><small>מחיר</small><b><span class="num">{P_PRICE}</span> ₪</b></span><span class="pp-price-note">כולל משלוח</span></p>
       <p class="pp-grade">חומר מקצועי <span dir="ltr" lang="en">PROFESSIONAL GRADE</span></p>
@@ -529,7 +532,14 @@ def product():
     </div>
   </div>
 </section>
-<div class="pp-strip" aria-hidden="true"><span>ניקיון עוצמתי</span><svg viewBox="0 0 18 18"><use href="#i-spark"/></svg><span>תוצאות מיידיות</span><svg viewBox="0 0 18 18"><use href="#i-spark"/></svg><span>ברק בלי סימנים</span><svg viewBox="0 0 18 18"><use href="#i-spark"/></svg><span>לכל סוגי המקלחונים</span></div>
+<div class="pp-strip" aria-hidden="true"><span>פטנט ייחודי</span><svg viewBox="0 0 18 18"><use href="#i-spark"/></svg><span>מסיר הכול</span><svg viewBox="0 0 18 18"><use href="#i-spark"/></svg><span>תוצאות מיידיות</span><svg viewBox="0 0 18 18"><use href="#i-spark"/></svg><span>ברק בלי סימנים</span><svg viewBox="0 0 18 18"><use href="#i-spark"/></svg><span>לכל סוגי המקלחונים</span></div>
+<section class="section pp-sec pp-ba" id="before-after">
+  <div class="wrap">
+    <div class="pp-head"><h2 data-split>לפני <em>ואחרי</em>.</h2><p class="lead" data-words>גררו את הקו וראו מה ריסוס אחד עושה לאבנית.</p></div>
+    {ba_block("faucet", pre, "ברז <em>כמו חדש</em>.", "קרום לבן וקשה של אבנית סביב הבסיס והפיה, כתמי מים ומשקעים על הכיור. מרססים, ממתינים מעט, מנגבים, והכרום חוזר לברוק.")}
+    {ba_block("glass", pre, "זכוכית <em>שקופה</em> שוב.", "זכוכית שהפכה לעכורה מאבנית ומשאריות סבון חוזרת להיות שקופה לגמרי. בלי פסים, בלי סימנים ובלי לשפשף שעות.")}
+  </div>
+</section>
 <section class="section pp-sec">
   <div class="wrap">
     <div class="pp-head"><h2 data-split>מה הוא <em>עושה</em>.</h2><p class="lead" data-words>הניסיון שלנו בניקיון דירות לפני אכלוס, בבקבוק אחד לבית.</p></div>

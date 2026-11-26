@@ -143,6 +143,8 @@ BY_SLUG = {s["slug"]: s for s in SERVICES}
 BA = {
   "reno": ("reno-before", "reno-after", "לפני השיפוץ", "אחרי השיפוץ", "אותו חדר, לפני השיפוץ ואחריו"),
   "crystal": ("crystal-before", "crystal-after", "לפני", "אחרי פוליש", "רצפת שיש לפני פוליש קריסטל ואחריו"),
+  "faucet": ("faucet-before", "faucet-after", "לפני", "אחרי ריסוס", "ברז אמבטיה עם אבנית, לפני השימוש במסיר האבנית ואחריו"),
+  "glass": ("glass-before", "glass-after", "לפני", "אחרי ריסוס", "זכוכית מקלחון עכורה מאבנית, לפני השימוש במסיר האבנית ואחריו"),
   "porcelain": ("porcelain-before", "porcelain-after", "לפני", "אחרי פוליש", "רצפת פורצלן לפני ניקוי עומק ופוליש ואחריו"),
 }
 
