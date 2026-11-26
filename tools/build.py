@@ -489,61 +489,90 @@ def product():
         {"@type": "BreadcrumbList", "itemListElement": [
             {"@type": "ListItem", "position": 1, "name": "ראשי", "item": f"{SITE}/"},
             {"@type": "ListItem", "position": 2, "name": "מסיר אבנית למקלחונים", "item": url}]}]}
-    feats = "".join(f'<li class="feat" data-reveal style="--d:{i}"><svg aria-hidden="true"><use href="#i-spark"/></svg><h3>{t}</h3><p>{d}</p></li>' for i, (t, d) in enumerate(P_FEATURES))
-    order_btn = f'<a class="btn btn-gold" href="{wa_order}" target="_blank" rel="noopener" data-magnet><svg aria-hidden="true"><use href="#i-wa"/></svg>להזמנה בוואטסאפ</a>'
+    icons = {
+        0: '<path d="M12 3l7 3v5c0 4.6-3 8.3-7 10-4-1.7-7-5.4-7-10V6z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M9 12.5l2 2 4-4.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>',
+        1: '<path d="M7 4h10l4 5-9 11L3 9z M3 9h18 M9.5 4L8 9l4 11 4-11-1.5-5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>',
+        2: '<path d="M3 8c2-1.6 4-1.6 6 0s4 1.6 6 0 4-1.6 6 0 M3 13c2-1.6 4-1.6 6 0s4 1.6 6 0 4-1.6 6 0 M3 18c2-1.6 4-1.6 6 0s4 1.6 6 0 4-1.6 6 0" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>',
+        3: '<path d="M6 21V8a4 4 0 0 1 8 0 M10 8h8a1 1 0 0 1 0 2h-8z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 13v1.5M15 13v2M18 13v1.5M13.5 17v1.5M16.5 17v1.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>',
+    }
+    feats = "".join(
+        f'<li class="pf" data-reveal style="--d:{i}"><span class="pf-ico"><svg viewBox="0 0 24 24" aria-hidden="true">{icons[i]}</svg></span><h3>{t}</h3><p>{d}</p></li>'
+        for i, (t, d) in enumerate(P_FEATURES))
+    order_btn = f'<a class="btn btn-volt" href="{wa_order}" target="_blank" rel="noopener" data-magnet><svg aria-hidden="true"><use href="#i-wa"/></svg>להזמנה בוואטסאפ</a>'
     phone_btn = f'<a class="btn btn-ghost" href="tel:0528580800"><svg aria-hidden="true"><use href="#i-phone"/></svg><span class="num">{PHONE}</span></a>'
+    bubbles = '<div class="bubbles" aria-hidden="true">' + "".join(f'<i style="--x:{x}%;--s:{s}px;--t:{t}s;--d:{d}s"></i>' for x, s, t, d in [(8,14,11,0),(18,8,9,3),(27,20,14,1),(41,10,10,5),(55,16,13,2),(66,7,8,6),(74,22,15,4),(86,12,11,1),(93,9,9,7)]) + '</div>'
+    sparks = '<svg class="p-spark s1" viewBox="0 0 18 18" aria-hidden="true"><use href="#i-spark"/></svg><svg class="p-spark s2" viewBox="0 0 18 18" aria-hidden="true"><use href="#i-spark"/></svg><svg class="p-spark s3" viewBox="0 0 18 18" aria-hidden="true"><use href="#i-spark"/></svg>'
     body = f"""{head("מסיר אבנית עוצמתי למקלחונים | ג'מבו קלין Jumbo Clean", desc, url, pre, "product-studio", ld)}
 {nav(pre)}
-<main id="main" tabindex="-1">
-<section class="s-hero night prod-hero">
-  <div class="grainient" aria-hidden="true"></div>
-  <div class="wrap s-hero-grid">
-    <div>
+<main id="main" tabindex="-1" class="pp">
+<section class="pp-hero">
+  {bubbles}
+  <div class="wrap pp-hero-grid">
+    <div class="pp-copy">
       <nav class="crumbs" aria-label="פירורי לחם"><a href="../">ראשי</a><span aria-hidden="true">/</span><span>מוצרים</span><span aria-hidden="true">/</span><span aria-current="page">מסיר אבנית</span></nav>
-      <img class="prod-logo" src="../assets/product-logo-720.webp" srcset="../assets/product-logo-360.webp 360w, ../assets/product-logo-720.webp 720w" sizes="240px" width="720" height="478" alt="ג׳מבו קלין">
-      <h1 data-split>מסיר אבנית <em>עוצמתי</em><br>למקלחונים.</h1>
+      <img class="pp-logo" src="../assets/product-logo-720.webp" srcset="../assets/product-logo-360.webp 360w, ../assets/product-logo-720.webp 720w" sizes="260px" width="720" height="478" alt="ג׳מבו קלין">
+      <p class="pp-new"><span>חדש</span></p>
+      <h1 data-split>מסיר אבנית<br><em>עוצמתי</em><br>למקלחונים</h1>
       <p class="lead" data-words>חומר ניקוי מקצועי מבית ג׳מבו קלין. מסיר אבנית קשה מהזכוכית, מהברזים ומהאריחים, ומשאיר את המקלחון מבריק בלי סימנים.</p>
       <div class="cta-row">{order_btn}{phone_btn}</div>
+      <p class="pp-grade">חומר מקצועי <span dir="ltr" lang="en">PROFESSIONAL GRADE</span></p>
     </div>
-    <div class="prod-shot prod-shot-hero">{img("product-studio", name, pre, "(max-width: 900px) 100vw, 50vw", eager=True, w=1800, h=1800)}</div>
+    <div class="pp-bottle">
+      <div class="pp-glow" aria-hidden="true"></div>
+      {img("product-studio", name, pre, "(max-width: 900px) 100vw, 50vw", eager=True, w=1800, h=1800)}
+      {sparks}
+    </div>
   </div>
 </section>
-<section class="section paper">
+<div class="pp-strip" aria-hidden="true"><span>ניקיון עוצמתי</span><svg viewBox="0 0 18 18"><use href="#i-spark"/></svg><span>תוצאות מיידיות</span><svg viewBox="0 0 18 18"><use href="#i-spark"/></svg><span>ברק בלי סימנים</span><svg viewBox="0 0 18 18"><use href="#i-spark"/></svg><span>לכל סוגי המקלחונים</span></div>
+<section class="section pp-sec">
   <div class="wrap">
-    <div class="head"><h2 data-split>למה <em>ג׳מבו קלין</em>.</h2><p class="lead" data-words>הניסיון שלנו בניקיון דירות לפני אכלוס, בבקבוק אחד לבית.</p></div>
-    <ul class="feats">{feats}</ul>
+    <div class="pp-head"><h2 data-split>מה הוא <em>עושה</em>.</h2><p class="lead" data-words>הניסיון שלנו בניקיון דירות לפני אכלוס, בבקבוק אחד לבית.</p></div>
+    <ul class="pp-feats">{feats}</ul>
   </div>
 </section>
-<section class="section alt paper">
-  <div class="wrap prod-gallery">
-    <figure class="prod-tall" data-reveal>{img("product-spray", "ריסוס מסיר האבנית על זכוכית של מקלחון", pre, "(max-width: 900px) 100vw, 50vw", w=1800, h=2250)}</figure>
-    <div class="prod-gallery-copy">
-      <h2 data-split>מרססים.<br>מנגבים.<br><em>מבריק</em>.</h2>
-      <ol class="use-steps">
-        <li><b>1</b><span>מרססים על הזכוכית, הברזים או האריחים.</span></li>
-        <li><b>2</b><span>ממתינים מעט, שהחומר יפרק את האבנית.</span></li>
-        <li><b>3</b><span>מנגבים במטלית לחה ושוטפים במים.</span></li>
+<section class="section pp-sec pp-use">
+  <div class="wrap pp-use-grid">
+    <figure class="pp-photo pp-tall" data-reveal>{img("product-spray", "ריסוס מסיר האבנית על זכוכית של מקלחון", pre, "(max-width: 900px) 100vw, 50vw", w=1800, h=2250)}</figure>
+    <div>
+      <h2 data-split>מרססים.<br>מנגבים.<br><em>מבריק.</em></h2>
+      <ol class="pp-steps">
+        <li data-reveal style="--d:0"><b>1</b><span>מרססים על הזכוכית, הברזים או האריחים.</span></li>
+        <li data-reveal style="--d:1"><b>2</b><span>ממתינים מעט, שהחומר יפרק את האבנית.</span></li>
+        <li data-reveal style="--d:2"><b>3</b><span>מנגבים במטלית לחה ושוטפים במים.</span></li>
       </ol>
-      <p class="note-label">לפני השימוש קראו את הוראות השימוש והאזהרות שעל התווית.</p>
-      <figure class="prod-wide" data-reveal>{img("product-bath", "בקבוק מסיר האבנית על דופן אמבטיה ליד מקלחון זכוכית", pre, "(max-width: 900px) 100vw, 40vw", w=1800, h=2250)}</figure>
+      <p class="pp-note">לפני השימוש קראו את הוראות השימוש והאזהרות שעל התווית.</p>
     </div>
   </div>
 </section>
-<section class="section paper" id="faq">
+<section class="pp-home">
+  <figure class="pp-home-img">{img("product-bath", "בקבוק מסיר האבנית על דופן אמבטיה ליד מקלחון זכוכית", pre, "100vw", w=1800, h=2250)}</figure>
+  <div class="wrap pp-home-copy">
+    <div class="pp-seal" aria-hidden="true"><span>מתאים<br>לכל סוגי<br>המקלחונים</span></div>
+    <h2 data-split>מקצועי.<br>אבל <em>לבית</em>.</h2>
+    <p class="lead" data-words>אותה רמת ניקיון שהצוות שלנו מביא לדירות לפני אכלוס, במקלחון שלכם כל שבוע.</p>
+  </div>
+</section>
+<section class="section pp-sec" id="faq">
   <div class="wrap">
-    <div class="head"><h2 data-split>שאלות על<br><em>המוצר</em>.</h2><p>עוד שאלה? <a class="link" href="tel:0528580800">התקשרו</a> או <a class="link" href="{wa_order}" target="_blank" rel="noopener">כתבו בוואטסאפ</a>.</p></div>
+    <div class="pp-head"><h2 data-split>שאלות על <em>המוצר</em>.</h2><p>עוד שאלה? <a class="link" href="tel:0528580800">התקשרו</a> או <a class="link" href="{wa_order}" target="_blank" rel="noopener">כתבו בוואטסאפ</a>.</p></div>
     {faq(P_FAQ)}
   </div>
 </section>
-<section class="section night prod-cta">
-  <div class="wrap prod-cta-in">
-    <h2 data-split>רוצים <em>מקלחון</em><br>מבריק?</h2>
+<section class="pp-cta">
+  {bubbles}
+  <div class="wrap pp-cta-in">
+    <img src="../assets/product-logo-360.webp" width="360" height="239" alt="" class="pp-cta-logo" loading="lazy">
+    <h2 data-split>מקלחון <em>מבריק</em>.<br>בלי מאמץ.</h2>
     <div class="cta-row">{order_btn}{phone_btn}</div>
     <p>צריכים ניקיון מקצועי לכל הבית? <a class="link" href="../nikayon-klali/">לשירותי הניקיון שלנו</a></p>
   </div>
 </section>
 </main>
 {footer(pre)}"""
+    body = body.replace("<body>", '<body class="prod-page">', 1)
+    body = body.replace("family=Karantina:wght@400;700&", "family=Karantina:wght@400;700&family=Rubik:wght@800;900&", 1)
+    body = body.replace('<link rel="stylesheet" href="../site.css">', '<link rel="stylesheet" href="../site.css"><link rel="stylesheet" href="../product.css">', 1)
     write("mesir-avnit/index.html", body)
 
 def legal():
